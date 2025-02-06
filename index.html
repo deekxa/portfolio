@@ -11,8 +11,8 @@
 
 
 
-<body class="bg-black text-white">
-    <nav class="w-full h-[60px] flex bg-black px-20  py-2 ">
+<body class="bg-black text-white ">
+    <nav class="w-full h-[80px] flex bg-black px-20 py-2 fixed top-0 left-0 z-10 ">
         <div class="w-full h-[80px] flex gap-10 items-center justify-between p-10  ">
             <div
                 class="  hover:bg-orange-500 hover:text-white hover:text-orange-500  text-white text-l border-2 border-white rounded-lg p-2 hover:text-orange-500 duration-500 ">
@@ -24,14 +24,102 @@
                 <li><a class="hover:text-orange-500 duration-500" href="about">About</a></li>
                 <li><a class="hover:text-orange-500 duration-500" href="projects">Projects</a></li>
                 <li><a class="hover:text-orange-500 duration-500" href="contact">Contact</a></li>
-                <i class="fa-solid fa-toggle-on text-3xl gap-2"></i>
+                <!-- <i class="fa-solid fa-toggle-on text-3xl gap-2"></i> -->
+                <li>
+                    
+                        <style>
+                            .container {
+                                background-color: black;
+                                border-radius: 40px;
+                                width: 55px;
+                                height: 40px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: end;
+                                /* ✅ Default position to right */
+                                border: 2px solid white;
+                                cursor: pointer;
+                                position: relative;
+                                transition: background-color 0.4s ease;
+                                margin-bottom: 25px;
+                            }
+
+                            .nextContainer {
+                                background-color: grey;
+                                /* ✅ Match initial dark mode */
+                                height: 20px;
+                                width: 20px;
+                                border-radius: 100%;
+                                margin-left: 5px;
+                                margin-right: 5px;
+                                transition: 0.4s;
+                            }
+
+
+                            .light-mode {
+                                background-color: white;
+                                color: black;
+                            }
+
+
+                            body {
+                                transition: 0.5s;
+                            }
+                        </style>
+                    </head>
+
+                    <body>
+                        <div onclick="handleToggle()" class="container">
+                            <div class="nextContainer"></div>
+                        </div>
+
+                        <script>
+                            // function handleToggle() {
+                            //     const toggle = document.querySelector(".container");
+                            //     const toggle2 = document.querySelector(".nextContainer");
+                            //     const currentJustify = getComputedStyle(toggle).justifyContent; // Get computed style
+
+                            //     if (currentJustify === 'end') {
+                            //         toggle.style.justifyContent = 'start';
+                            //         toggle2.style.backgroundColor = 'white';
+                            //         document.body.style.backgroundColor = 'white';
+                            //     } else {
+                            //         toggle.style.justifyContent = 'end';
+                            //         toggle2.style.backgroundColor = 'grey';
+                            //         document.body.style.backgroundColor = 'black';
+                            //     }
+                            // }
+                            function handleToggle() {
+                                const toggle = document.querySelector(".container");
+                                const toggle2 = document.querySelector(".nextContainer");
+                                const currentJustify = getComputedStyle(toggle).justifyContent; // Get computed style
+
+                                if (currentJustify === 'end') {
+                                    toggle.style.justifyContent = 'start';
+                                    toggle2.style.backgroundColor = 'white';
+                                    document.body.style.backgroundColor = 'white';
+                                    document.body.style.color = 'black'; // ✅ Text turns black in light mode
+                                } else {
+                                    toggle.style.justifyContent = 'end';
+                                    toggle2.style.backgroundColor = 'grey';
+                                    document.body.style.backgroundColor = 'black';
+                                    document.body.style.color = 'white'; // ✅ Text turns white in dark mode
+                                }
+                            }
+
+                        </script>
+                    </body>
+
+                    </html>
+
+                </li>
             </ul>
         </div>
     </nav>
     <div>
         <div class="flex justify-center">
             <div>
-                <div class="flex w-full gap-2 text-center items-center ">
+                <div class="flex w-full gap-2 text-center items-center  ">
                     <div class="">
 
                         <h1 class="text-5xl font-mono leading-relaxed text-center ">
@@ -91,7 +179,7 @@
                 <div class="text-black bg-white text-black font-sans  ">
                     <h1 class="text-2xl text-orange-500">Bamboo-Craft 🌿 </h1>
                     <h1 class="text-xl font-sans  ">Bamboo-Craft is a sustainable e-commerce platform that offers
-                        handcrafted bamboo products. 
+                        handcrafted bamboo products.
                     </h1>
 
                     <div>
@@ -171,10 +259,11 @@
                     class="fa-brands fa-github hover:text-orange-500 hover:text-orange-500 hover:rounded-full "></i></a>
         </div>
         <div class="   ">
-            <a target="_blank" href = "https://www.linkedin.com/in/dikshya-khanal-%E0%B2%A0-%E0%B2%A0-608834217/"><i class="fa-brands fa-linkedin hover:text-orange-500 hover:text-orange-500"></i></a>
+            <a target="_blank" href="https://www.linkedin.com/in/dikshya-khanal-%E0%B2%A0-%E0%B2%A0-608834217/"><i
+                    class="fa-brands fa-linkedin hover:text-orange-500 hover:text-orange-500"></i></a>
         </div>
         <div class=" ">
-            <a  target = "_blank" href="https://www.facebook.com/"><i
+            <a target="_blank" href="https://www.facebook.com/"><i
                     class="fa-brands fa-facebook hover:text-orange-500 hover:text-orange-500 hover:rounded-full "></i></a>
         </div>
     </div>
