@@ -29,7 +29,7 @@
                             display: flex;
                             align-items: center;
                             justify-content: end;
-                            /* ✅ Default position to right */
+                            
                             border: 2px solid white;
                             cursor: pointer;
                             position: relative;
@@ -39,7 +39,7 @@
 
                         .nextContainer {
                             background-color: grey;
-                            /* ✅ Match initial dark mode */
+                           
                             height: 20px;
                             width: 20px;
                             border-radius: 100%;
@@ -58,20 +58,23 @@
                             transition: 0.5s;
                         }
 
-                        /* Light mode specific styles */
+                       
                         .light-mode .hello-btn {
-                            color: black; /* Button text color in light mode */
-                            border-color: black; /* Button border color in light mode */
+                            color: black; 
+                            border-color: black;
                         }
+                        
 
                         .light-mode .hello-btn:hover {
-                            color: white; /* Button hover text color in light mode */
-                            background-color: orangered; /* Button hover background color */
+                            color: white; 
+                            background-color: orangered; 
                         }
 
                         .light-mode .horizontal-line {
-                            border-color: black; /* Horizontal line border color in light mode */
+                            border-color: black; 
                         }
+                        
+                        
                     </style>
 
                     <div onclick="handleToggle()" class="container">
@@ -90,13 +93,13 @@
                                 toggle2.style.backgroundColor = 'white';
                                 body.style.backgroundColor = 'white';
                                 body.style.color = 'black';
-                                body.classList.add('light-mode'); // Add light mode class
+                                body.classList.add('light-mode'); 
                             } else {
                                 toggle.style.justifyContent = 'end';
                                 toggle2.style.backgroundColor = 'grey';
                                 body.style.backgroundColor = 'black';
                                 body.style.color = 'white';
-                                body.classList.remove('light-mode'); // Remove light mode class
+                                body.classList.remove('light-mode'); 
                             }
                         }
                     </script>
@@ -115,7 +118,7 @@
                             <br />and I am a web <br>developer based in New <br />York.
 
                             <div class="p-10  ">
-                                <a class="hover:text-white hover:text-orange-500 duration-500 hover:bg-orange-500 border-white  border-2 text-white rounded-2xl  text-xl font-sans  p-[15px] border-width-8px "
+                                <a class=" hello-btn hover:text-black hover:text-orange-500 duration-500 hover:bg-orange-500 border-white  border-2 text-white rounded-2xl  text-xl font-sans  p-[15px] border-width-8px "
                                     href="#">Learn More</a>
                             </div>
                     </div>
