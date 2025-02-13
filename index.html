@@ -19,8 +19,6 @@
                 <a class="hover:text-orange-500 duration-500" href="#about">About</a>
                 <a class="hover:text-orange-500 duration-500" href="#projects">Projects</a>
                 <a class="hover:text-orange-500 duration-500" href="#contact">Contact</a>
-                
-
                 <li>
                     <style>
                         .container {
@@ -53,10 +51,26 @@
                         .light-mode {
                             background-color: white;
                             color: black;
+
                         }
 
                         body {
                             transition: 0.5s;
+                        }
+
+                        /* Light mode specific styles */
+                        .light-mode .hello-btn {
+                            color: black; /* Button text color in light mode */
+                            border-color: black; /* Button border color in light mode */
+                        }
+
+                        .light-mode .hello-btn:hover {
+                            color: white; /* Button hover text color in light mode */
+                            background-color: orangered; /* Button hover background color */
+                        }
+
+                        .light-mode .horizontal-line {
+                            border-color: black; /* Horizontal line border color in light mode */
                         }
                     </style>
 
@@ -68,18 +82,21 @@
                         function handleToggle() {
                             const toggle = document.querySelector(".container");
                             const toggle2 = document.querySelector(".nextContainer");
-                            const currentJustify = getComputedStyle(toggle).justifyContent; // Get computed style
+                            const currentJustify = getComputedStyle(toggle).justifyContent;
+                            const body = document.body;
 
                             if (currentJustify === 'end') {
                                 toggle.style.justifyContent = 'start';
                                 toggle2.style.backgroundColor = 'white';
-                                document.body.style.backgroundColor = 'white';
-                                document.body.style.color = 'black'; // ✅ Text turns black in light mode
+                                body.style.backgroundColor = 'white';
+                                body.style.color = 'black';
+                                body.classList.add('light-mode'); // Add light mode class
                             } else {
                                 toggle.style.justifyContent = 'end';
                                 toggle2.style.backgroundColor = 'grey';
-                                document.body.style.backgroundColor = 'black';
-                                document.body.style.color = 'white'; // ✅ Text turns white in dark mode
+                                body.style.backgroundColor = 'black';
+                                body.style.color = 'white';
+                                body.classList.remove('light-mode'); // Remove light mode class
                             }
                         }
                     </script>
@@ -87,12 +104,12 @@
             </ul>
         </div>
     </nav>
+
     <div>
         <div class="flex justify-center">
             <div>
                 <div class="flex w-full gap-2 text-center items-center pt-20px ">
                     <div class="">
-
                         <h1 class="text-5xl font-mono leading-relaxed text-center ">
                             Hi! My name is <span class="text-orange-500">Dikshya Khanal</span>
                             <br />and I am a web <br>developer based in New <br />York.
@@ -105,20 +122,19 @@
                     <div class="p-10 ">
                         <div>
                             <img src="hero.png" alt="hero" height="600" width="600">
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-    <div id="about" class="flex w-full h-screen gap-20 text-center pl-60  items-center text-left ">
-        <div  class=" text-4xl  gap-10 pl-40 ">
+
+    <div id="about" class="flex w-full h-screen gap-20 text-center pl-60 items-center text-left ">
+        <div class="text-4xl gap-10 pl-40 ">
             <a href="" class="hover:text-orange-500 duration-500 text-orange-500">About me</a>
             <hr class="m-auto border-bottom border-orange-500 border-2 w-[30px] mt-2">
         </div>
-        <div class="text-xl max-w-3xl pl-40  font-sans  text-justify  py-40">
+        <div class="text-xl max-w-3xl pl-40 font-sans text-justify py-40">
             Hi! I'm a passionate web developer with a strong eye for design and a love for creating dynamic,
             user-friendly websites. I specialize in building responsive and high-performance web applications using
             modern technologies. From front-end interfaces to back-end functionality, I enjoy crafting seamless digital
@@ -130,44 +146,35 @@
 
             Let's build something amazing together! 🚀
         </div>
-
     </div>
 
     <div id="projects" class="">
         <div class="title-div p-10">
             <h1 class="text-center hover:text-orange-500 duration-500 text-orange-500 text-4xl  ">Projects</h1>
-
             <hr class="m-auto border-bottom border-orange-500 border-2 w-[30px] mt-2">
-
-
         </div>
 
         <div class="project-container flex flex-wrap gap-5 py-2 justify-center">
-            <div class="bg-white w-[30%] p-4 border-color-black border-white  border text-white rounded-xl  ml-4 duration-100  transition-transform duration-10 hover:scale-110 ">
-                <div><img src="project.png" alt="#" class="">
-                </div>
-                <div class="text-black bg-white text-black font-sans  ">
+            <div class="w-[30%] p-4 border-color-black border-grey border text-white rounded-xl ml-4 duration-100 transition-transform duration-10 hover:scale-110 dark:bg-white bg-white">
+                <div><img src="project.png" alt="#" class=""></div>
+                <div class="text-black bg-white dark:bg-white text-black font-sans">
                     <h1 class="text-2xl text-orange-500">Bamboo-Craft 🌿 </h1>
-                    <h1 class="text-xl font-sans  ">Bamboo-Craft is a sustainable e-commerce platform that offers
-                        handcrafted bamboo products.
-                    </h1>
+                    <h1 class="text-xl font-sans">Bamboo-Craft is a sustainable e-commerce platform that offers handcrafted bamboo products.</h1>
 
                     <div>
                         <div class="flex gap-10 py-2">
                             <h1>#Node.js</h1>
                             <h1>#Express</h1>
                             <h1>#MongoDB</h1>
-
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="bg-white w-[30%]  p-4 border-color-black border-white  border text-white rounded-xl  ml-4 duration-100  transition-transform duration-10 hover:scale-110 ">
-                <div><img src="project.png" alt="#" class="max-w-sm w-200 h-100 ">
-                </div>
-                <div class="text-black bg-white text-black font-sans  ">
+            <div class="w-[30%]  p-4 border-color-black border-grey border text-white rounded-xl ml-4 duration-100 transition-transform duration-10 hover:scale-110 dark:bg-white bg-white">
+                <div><img src="project.png" alt="#" class="max-w-sm w-200 h-100 "></div>
+                <div class="text-black bg-white dark:bg-white text-black font-sans">
                     <h1 class="text-2xl text-orange-500">EcoTrack </h1>
-                    <h1 class="text-xl font-sans  ">An eco-friendly tracker that helps users monitor their daily carbon
+                    <h1 class="text-xl font-sans">An eco-friendly tracker that helps users monitor their daily carbon
                         footprint, water usage, and sustainability efforts with data visualization.</h1>
 
                     <div>
@@ -175,17 +182,15 @@
                             <h1>#React</h1>
                             <h1>#D3.js</h1>
                             <h1>#MongoDB</h1>
-
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="bg-white w-[30%] p-4 border-color-black border-white  border text-white rounded-xl  ml-4 duration-100  transition-transform duration-10 hover:scale-110 ">
-                <div><img src="project.png" alt="#" class="max-w-sm w-200 h-100 ">
-                </div>
-                <div class="text-black bg-white text-black font-sans  ">
+            <div class="w-[30%] p-4 border-color-black border-grey border text-white rounded-xl ml-4 duration-100 transition-transform duration-10 hover:scale-110 dark:bg-white bg-white">
+                <div><img src="project.png" alt="#" class="max-w-sm w-200 h-100 "></div>
+                <div class="text-black bg-white dark:bg-white text-black font-sans">
                     <h1 class="text-2xl text-orange-500">AuraMood </h1>
-                    <h1 class="text-xl font-sans  ">An AI-driven music recommendation system that detects your mood and
+                    <h1 class="text-xl font-sans">An AI-driven music recommendation system that detects your mood and
                         curates playlists accordingly.</h1>
 
                     <div>
@@ -197,44 +202,42 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <div class="footer-div flex justify-center mt-[40px] gap-4 text-2xl">
-            <h1 class="text-center">View full private projects archive
-            </h1>
+            <h1 class="text-center">View full private projects archive</h1>
             <div>
                 <i class="fa-solid fa-arrow-right"></i>
             </div>
         </div>
-
     </div>
 
     <div>
         <div class="p-10 text-center mt-[10%] ">
-            <a class="hover:bg-orange-500 hover:text-white hover:text-orange-500  border-white  border text-white rounded-2xl  text-xl font-sans  p-4 border-width-8px  "
+            <a class="hello-btn hover:bg-orange-500 hover:text-white duration-500 hover:text-orange-500 border-white border text-white rounded-2xl text-xl font-sans p-4 border-width-8px"
                 href="#">Say Hello !</a>
         </div>
     </div>
     <div>
         <div class="mb-10">
-            <hr class="w-1/2 mx-auto my-4 border-t-3 border-white">
+            <hr class="w-1/2 mx-auto my-4 border-t-3 border-white horizontal-line">
         </div>
     </div>
-    <div  id="contact" class="flex text-5xl  justify-center gap-20">
-        <div class="  ">
+    <div id="contact" class="flex text-5xl justify-center gap-20">
+        <div>
             <a target="_blank" href="https://github.com/deekxa"><i
                     class="fa-brands fa-github hover:text-orange-500 hover:text-orange-500 hover:rounded-full "></i></a>
         </div>
-        <div class="   ">
+        <div>
             <a target="_blank" href="https://www.linkedin.com/in/dikshya-khanal-%E0%B2%A0-%E0%B2%A0-608834217/"><i
                     class="fa-brands fa-linkedin hover:text-orange-500 hover:text-orange-500"></i></a>
         </div>
-        <div class=" ">
+        <div>
             <a target="_blank" href="https://www.facebook.com/"><i
                     class="fa-brands fa-facebook hover:text-orange-500 hover:text-orange-500 hover:rounded-full "></i></a>
         </div>
     </div>
+
     <div>
         <div class="flex justify-center font-sans mt-[300px]">
             <h1>
@@ -243,7 +246,7 @@
             </h1>
         </div>
         <div class="fixed top-[90%] left-[95%]">
-            <div class=" z-10">
+            <div class="z-10">
                 <span class="bg-orange-500 flex justify-center items-center w-10 h-10 rounded-full p-6 ">
                     <a href="#">
                         <i class="fa-solid fa-up-long text-xs"></i>
