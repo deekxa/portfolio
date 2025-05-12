@@ -1,240 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dikshya Khanal | Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="bg-white text-gray-900 transition-colors duration-500">
 
-<body class="bg-black text-white">
-    <nav class="w-full h-[80px] flex bg-black px-5 py-2 sticky top-0 left-0 z-10">
-        <div class="w-full h-[80px] flex gap-10 items-center justify-between p-5">
-            <div class="hover:bg-orange-500 hover:text-white hover:text-orange-500 text-white text-l border-2 border-white rounded-lg p-2 hover:text-orange-500 duration-500">
-                <a href="#">Download CV</a>
-            </div>
-            <ul class="flex gap-5 text-white text-xl">
-                <a class="hover:text-orange-500 duration-500" href="#about">About</a>
-                <a class="hover:text-orange-500 duration-500" href="#projects">Projects</a>
-                <a class="hover:text-orange-500 duration-500" href="#contact">Contact</a>
-                <li>
-                    <style>
-                        .container {
-                            background-color: black;
-                            border-radius: 40px;
-                            width: 55px;
-                            height: 40px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: end;
-                            border: 2px solid white;
-                            cursor: pointer;
-                            position: relative;
-                            transition: background-color 0.4s ease;
-                            margin-bottom: 25px;
-                        }
-
-                        .nextContainer {
-                            background-color: grey;
-                            height: 20px;
-                            width: 20px;
-                            border-radius: 100%;
-                            margin-left: 5px;
-                            margin-right: 5px;
-                            transition: 0.4s;
-                        }
-
-                        .light-mode {
-                            background-color: white;
-                            color: black;
-                        }
-
-                        body {
-                            transition: 0.5s;
-                        }
-
-                        .light-mode .hello-btn {
-                            color: black;
-                            border-color: black;
-                        }
-
-                        .light-mode .hello-btn:hover {
-                            color: white;
-                            background-color: orangered;
-                        }
-
-                        .light-mode .horizontal-line {
-                            border-color: black;
-                        }
-                    </style>
-
-                    <div onclick="handleToggle()" class="container">
-                        <div class="nextContainer"></div>
-                    </div>
-
-                    <script>
-                        function handleToggle() {
-                            const toggle = document.querySelector(".container");
-                            const toggle2 = document.querySelector(".nextContainer");
-                            const currentJustify = getComputedStyle(toggle).justifyContent;
-                            const body = document.body;
-
-                            if (currentJustify === 'end') {
-                                toggle.style.justifyContent = 'start';
-                                toggle2.style.backgroundColor = 'white';
-                                body.style.backgroundColor = 'white';
-                                body.style.color = 'black';
-                                body.classList.add('light-mode');
-                            } else {
-                                toggle.style.justifyContent = 'end';
-                                toggle2.style.backgroundColor = 'grey';
-                                body.style.backgroundColor = 'black';
-                                body.style.color = 'white';
-                                body.classList.remove('light-mode');
-                            }
-                        }
-                    </script>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="flex justify-center">
-        <div>
-            <div class="flex flex-col md:flex-row w-full gap-2 text-center items-center pt-20px">
-                <div class="md:w-1/2">
-                    <h1 class="text-5xl font-mono leading-relaxed text-center">
-                        Hi! My name is <span class="text-orange-500">Dikshya Khanal</span>
-                        <br />and I am a web <br>developer based in New <br />York.
-
-                        <div class="p-10">
-                            <a class="hello-btn hover:text-black hover:text-orange-500 duration-500 hover:bg-orange-500 border-white  border-2 text-white rounded-2xl  text-xl font-sans  p-[15px] border-width-8px"
-                               href="#">Learn More</a>
-                        </div>
-                    </h1>
-                </div>
-                <div class="md:w-1/2 p-10">
-                    <div>
-                        <img src="hero.png" alt="hero" class="w-full h-auto">
-                    </div>
-                </div>
-            </div>
-        </div>
+  <!-- Side Navigation -->
+  <aside id="side-navbar" class="fixed top-0 left-0 h-screen w-20 bg-white dark:bg-gray-800 shadow-md flex flex-col items-center py-10 space-y-10 z-50">
+    <a href="#about" class="text-2xl hover:text-indigo-600 dark:hover:text-indigo-400 transition"><i class="fas fa-user"></i></a>
+    <a href="#projects" class="text-2xl hover:text-indigo-600 dark:hover:text-indigo-400 transition"><i class="fas fa-briefcase"></i></a>
+    <a href="#contact" class="text-2xl hover:text-indigo-600 dark:hover:text-indigo-400 transition"><i class="fas fa-envelope"></i></a>
+    
+    <!-- Dark Mode Toggle -->
+    <div onclick="handleToggle()" class="cursor-pointer text-2xl hover:text-indigo-600 dark:hover:text-indigo-400">
+      <i class="fas fa-adjust"></i>
     </div>
 
-    <div id="about" class="flex flex-col md:flex-row w-full h-auto gap-10 text-center items-center justify-center py-10 px-5">
-        <div class="text-4xl gap-10 text-center mb-5 md:mb-0">
-            <a href="" class="hover:text-orange-500 duration-500 text-orange-500">About me</a>
-            <hr class="m-auto border-orange-500 border-2 w-[30px] mt-2">
-        </div>
-        <div class="text-xl max-w-3xl text-left font-sans text-justify px-5 py-10">
-            Hi! I'm a passionate web developer with a strong eye for design and a love for creating dynamic,
-            user-friendly websites. I specialize in building responsive and high-performance web applications using
-            modern technologies. From front-end interfaces to back-end functionality, I enjoy crafting seamless digital
-            experiences that bring ideas to life.
-    
-            With a keen focus on clean code, intuitive UX, and scalable solutions, I am always eager to learn and
-            explore new trends in web development. Whether it's working with JavaScript frameworks, optimizing
-            performance, or integrating APIs, I thrive on solving challenges and delivering top-notch results.
-    
-            Let's build something amazing together! 🚀
-        </div>
+    <!-- Download Button Below Toggle -->
+    <a href="./JAVASCRIPT SYLLABUS.pdf" class="text-2xl hover:text-indigo-600 dark:hover:text-indigo-400 transition">
+      <i class="fas fa-download"></i>
+    </a>
+  </aside>
+
+  <!-- Main Navigation -->
+  <nav class="fixed top-0 left-0 w-full bg-white bg-opacity-90 dark:bg-gray-900 dark:bg-opacity-90 shadow-md z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="#" class="text-xl font-bold text-indigo-600 dark:text-indigo-400">Dikshya Khanal</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <main class="ml-24 px-10 py-24 min-h-screen flex items-center justify-between">
+    <div>
+      <h1 class="text-5xl font-bold leading-snug">
+        Hi! I'm <span class="text-indigo-600">Dikshya Khanal</span><br/>
+        A Creative Developer & Designer
+      </h1>
+      
+      <a href="#about" class="mt-6 inline-block px-6 py-3 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">Learn More</a>
     </div>
     
+    <img src="photo/dikshyaa.jpeg" alt="Dikshya Khanal" class="w-[400px] h-[400px] object-cover rounded-lg shadow-2xl border-4 border-indigo-600 transform hover:scale-105 transition-all duration-300" />
+  </main>
+  
+  <!-- About Section -->
+  <section id="about" class="ml-24 px-10 py-20 text-center">
+    <h2 class="text-4xl font-bold text-indigo-600 mb-4">About Me</h2>
+    <p class="text-lg leading-relaxed max-w-3xl mx-auto mb-6">
+      I'm a passionate web developer with a strong eye for design and a love for creating dynamic, user-friendly websites. I specialize in building responsive and high-performance web applications using modern technologies. From front-end interfaces to back-end functionality, I enjoy crafting seamless digital experiences that bring ideas to life.
+    </p>
+    <p class="text-lg leading-relaxed max-w-3xl mx-auto mb-6">
+      With a keen focus on clean code, intuitive UX, and scalable solutions, I am always eager to learn and explore new trends in web development. Whether it's working with JavaScript frameworks, optimizing performance, or integrating APIs, I thrive on solving challenges and delivering top-notch results.
+    </p>
+    <p class="text-lg leading-relaxed max-w-3xl mx-auto mb-6">
+      I also have experience with design tools like <span class="font-bold">Canva</span>, <span class="font-bold">Figma</span>, and <span class="font-bold">Photoshop</span>. I enjoy creating visually appealing templates and assets. Additionally, I'm proficient in using <span class="font-bold">Git</span> and <span class="font-bold">GitHub</span> for version control.
+    </p>
+   
+  </section>
 
-    <div id="projects">
-        <div class="title-div p-10">
-            <h1 class="text-center hover:text-orange-500 duration-500 text-orange-500 text-4xl">Projects</h1>
-            <hr class="m-auto border-bottom border-orange-500 border-2 w-[30px] mt-2">
-        </div>
+  <!-- Projects Section -->
+  <section id="projects" class="ml-24 px-10 py-20 bg-white dark:bg-gray-900">
+    <h2 class="text-4xl font-bold text-indigo-600 mb-10">Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <!-- Bamboo-Craft Project -->
+      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
+        <img src="photo/bamboo.png" alt="Bamboo-Craft" class="w-full h-40 object-cover rounded-md" />
+        <h3 class="text-2xl font-semibold text-indigo-600 mt-4">Bamboo-Craft </h3>
+        <p class="mt-2">Sustainable e-commerce platform that offers handcrafted bamboo products.</p>
+        <div class="mt-2 text-sm text-gray-600 dark:text-gray-400">#React #Node.js #Tailwind CSS #MongoDB #JavaScript</div>
+      </div>
 
-        <div class="project-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-2 justify-center">
-            <!-- Project 1 -->
-            <div class="w-full p-4 border-gray-800 border text-white rounded-xl transition-transform hover:scale-110 dark:bg-white bg-white">
-                <div><img src="project.png" alt="#" class="w-full h-auto"></div>
-                <div class="text-black bg-white dark:bg-white text-black font-sans">
-                    <h1 class="text-2xl text-orange-500">Bamboo-Craft 🌿</h1>
-                    <h1 class="text-xl font-sans">Bamboo-Craft is a sustainable e-commerce platform that offers handcrafted bamboo products.</h1>
-                    <div class="flex gap-10 py-2">
-                        <h1>#Node.js</h1>
-                        <h1>#Express</h1>
-                        <h1>#MongoDB</h1>
-                    </div>
-                </div>
-            </div>
-            <!-- Project 2 -->
-            <div class="w-full p-4 border-gray-800 border text-white rounded-xl transition-transform hover:scale-110 dark:bg-white bg-white">
-                <div><img src="project.png" alt="#" class="w-full h-auto"></div>
-                <div class="text-black bg-white dark:bg-white text-black font-sans">
-                    <h1 class="text-2xl text-orange-500">EcoTrack</h1>
-                    <h1 class="text-xl font-sans">An eco-friendly tracker that helps users monitor their daily carbon footprint, water usage, and sustainability efforts with data visualization.</h1>
-                    <div class="flex gap-10 py-2">
-                        <h1>#React</h1>
-                        <h1>#D3.js</h1>
-                        <h1>#MongoDB</h1>
-                    </div>
-                </div>
-            </div>
-            <!-- Project 3 -->
-            <div class="w-full p-4 border-gray-800 border text-white rounded-xl transition-transform hover:scale-110 dark:bg-white bg-white">
-                <div><img src="project.png" alt="#" class="w-full h-auto"></div>
-                <div class="text-black bg-white dark:bg-white text-black font-sans">
-                    <h1 class="text-2xl text-orange-500">AuraMood</h1>
-                    <h1 class="text-xl font-sans">An AI-driven music recommendation system that detects your mood and curates playlists accordingly.</h1>
-                    <div class="flex gap-10 py-2">
-                        <h1>#React</h1>
-                        <h1>#TensorFlow.js</h1>
-                        <h1>#Spotify API</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+      <!-- Portfolio Project -->
+      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
+        <img src="photo/portfolio.png" alt="Portfolio" class="w-full h-40 object-cover rounded-md" />
+        <h3 class="text-2xl font-semibold text-indigo-600 mt-4">This Portfolio</h3>
+        <p class="mt-2">A personal portfolio website showcasing my work and skills.</p>
+        <div class="mt-2 text-sm text-gray-600 dark:text-gray-400">#HTML #CSS #Tailwind CSS #JavaScript</div>
+      </div>
 
-    <div>
-        <div class="p-10 text-center mt-[10%]">
-            <a class="hello-btn hover:bg-orange-500 hover:text-white duration-500 hover:text-orange-500 border-white border text-white rounded-2xl text-xl font-sans p-4 border-width-8px"
-               href="#">Say Hello !</a>
-        </div>
+      <!-- Static Website Project -->
+      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
+        <img src="photo/image.png" alt="Static Website" class="w-full h-40 object-cover rounded-md" />
+        <h3 class="text-2xl font-semibold text-indigo-600 mt-4">Static Website</h3>
+        <p class="mt-2">A simple and clean static website built with HTML, CSS, JavaScript, and Tailwind CSS.</p>
+        <div class="mt-2 text-sm text-gray-600 dark:text-gray-400">#HTML #CSS #JavaScript #Tailwind CSS #React</div>
+      </div>
     </div>
-    <div>
-        <div class="mb-10">
-            <hr class="w-1/2 mx-auto my-4 border-t-3 border-white horizontal-line">
-        </div>
-    </div>
-    <div id="contact" class="flex text-5xl justify-center gap-20">
-        <div>
-            <a target="_blank" href="https://github.com/deekxa"><i
-                    class="fa-brands fa-github hover:text-orange-500 hover:text-orange-500 hover:rounded-full "></i></a>
-        </div>
-        <div>
-            <a target="_blank" href="https://www.linkedin.com/in/dikshya-khanal-%E0%B2%A0-%E0%B2%A0-608834217/"><i
-                    class="fa-brands fa-linkedin hover:text-orange-500 hover:text-orange-500"></i></a>
-        </div>
-        <div>
-            <a target="_blank" href="https://www.facebook.com/"><i
-                    class="fa-brands fa-facebook hover:text-orange-500 hover:text-orange-500 hover:rounded-full "></i></a>
-        </div>
-    </div>
+  </section>
 
-    <div>
-        <div class="flex justify-center font-sans mt-[300px]">
-            <h1>
-                Copyright © 2023. All rights reserved. Made by <span class="text-orange-500">Veranika Kasparevych</span>Assets designed by <span class="text-orange-500">Freepik</span>
-            </h1>
-        </div>
-        <div class="fixed top-[90%] left-[95%]">
-            <div class="z-10">
-                <span class="bg-orange-500 flex justify-center items-center w-10 h-10 rounded-full p-6 ">
-                    <a href="#">
-                        <i class="fa-solid fa-up-long text-xs"></i>
-                    </a>
-                </span>
-            </div>
-        </div>
+  <!-- Contact Section -->
+  <section id="contact" class="ml-24 px-10 py-20 text-center">
+    <h2 class="text-4xl font-bold text-indigo-600 mb-10">Say Hello!</h2>
+    <div class="flex justify-center space-x-10 text-3xl">
+      <a href="https://github.com/deekxa" target="_blank" class="hover:text-indigo-600 dark:hover:text-indigo-400"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/dikshya-khanal-%E0%B2%A0-%E0%B2%A0-608834217/" target="_blank" class="hover:text-indigo-600 dark:hover:text-indigo-400"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.facebook.com/" target="_blank" class="hover:text-indigo-600 dark:hover:text-indigo-400"><i class="fab fa-facebook"></i></a>
     </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="ml-24 px-10 py-6 text-center text-sm text-gray-600 dark:text-gray-400">
+    <p>Copyright © 2023. All rights reserved. Made by <span class="text-indigo-600">Dikshya Khanal</span>.</p>
+  </footer>
+
+  <!-- Scroll to top button -->
+  <div class="fixed bottom-5 right-5 z-50">
+    <a href="#" class="w-14 h-14 flex items-center justify-center bg-indigo-600 text-white rounded-full shadow-xl hover:bg-indigo-700 transition duration-300">
+      <i class="fas fa-arrow-up text-xl"></i>
+    </a>
+  </div>
+  
+
+  <!-- Theme Toggle Script -->
+  <script>
+    function handleToggle() {
+      const body = document.body;
+      const sideNavbar = document.getElementById("side-navbar");
+      
+      body.classList.toggle("bg-white");
+      body.classList.toggle("bg-black");
+      body.classList.toggle("text-gray-900");
+      body.classList.toggle("text-white");
+      
+      sideNavbar.classList.toggle("bg-white");
+      sideNavbar.classList.toggle("bg-gray-800");
+    }
+  </script>
 </body>
-
 </html>
