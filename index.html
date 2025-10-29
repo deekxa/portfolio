@@ -1,1091 +1,643 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dikshya Khanal - Frontend Developer Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Montserrat', sans-serif;
-  background: #0f1419;
-  color: #fff;
-  overflow-x: hidden;
-  cursor: none;
-}
-
-/* Custom Cursor with Trail */
-.cursor {
-  position: fixed;
-  width: 30px;
-  height: 30px;
-  border: 2px solid #a8dadc;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10000;
-  transition: transform 0.15s ease;
-  mix-blend-mode: screen;
-}
-
-.cursor-dot {
-  position: fixed;
-  width: 10px;
-  height: 10px;
-  background: #a8dadc;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10001;
-  transition: transform 0.1s ease;
-  box-shadow: 0 0 10px rgba(168, 218, 220, 0.8);
-}
-
-.cursor-trail {
-  position: fixed;
-  width: 15px;
-  height: 15px;
-  background: radial-gradient(circle, rgba(168, 218, 220, 0.6) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0;
-  animation: fadeTrail 0.5s ease-out forwards;
-}
-
-@keyframes fadeTrail {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-}
-
-/* Galaxy Canvas */
-#galaxy-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-/* Navigation */
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 2rem 4rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 100;
-  background: rgba(15, 20, 25, 0.5);
-  backdrop-filter: blur(10px);
-}
-
-.logo {
-  font-size: 1.5rem;
-  font-family: 'Cormorant Garamond', serif;
-  color: #b76e79;
-  font-weight: 600;
-}
-
-.nav-links {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-}
-
-.nav-links a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  transition: color 0.3s;
-}
-
-.nav-links a:hover {
-  color: #c9b6e4;
-}
-
-/* Hero Section */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4rem 2rem;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.text-container {
-  display: flex;
-  align-items: center;
-  gap: 4rem;
-  max-width: 1200px;
-  width: 100%;
-}
-
-.hero-content {
-  flex: 1;
-  text-align: left;
-}
-
-/* Profile Picture Styles */
-.profile-picture-container {
-  position: relative;
-  width: 350px;
-  height: 420px;
-  perspective: 1000px;
-  flex-shrink: 0;
-}
-
-.profile-picture {
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
-  object-fit: cover;
-  border: 3px solid rgba(183, 110, 121, 0.6);
-  box-shadow: 
-    0 20px 60px rgba(183, 110, 121, 0.3),
-    0 0 30px rgba(201, 182, 228, 0.2),
-    inset 0 0 20px rgba(255, 255, 255, 0.05);
-  transition: all 0.6s ease;
-  cursor: none;
-  position: relative;
-  z-index: 2;
-  transform: perspective(800px) rotateY(-5deg) rotateX(2deg);
-}
-
-.profile-picture-container:hover .profile-picture {
-  transform: perspective(800px) rotateY(-8deg) rotateX(-5deg) translateY(-15px);
-  border-color: #b76e79;
-  box-shadow: 
-    0 30px 70px rgba(183, 110, 121, 0.4),
-    0 0 40px rgba(201, 182, 228, 0.3),
-    inset 0 0 30px rgba(255, 255, 255, 0.1);
-}
-
-.profile-picture-container::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  right: -10px;
-  bottom: -10px;
-  border-radius: 25px;
-  background: linear-gradient(135deg, #b76e79, #c9b6e4, #b76e79, #c9b6e4);
-  background-size: 300% 300%;
-  opacity: 0.3;
-  z-index: 1;
-  animation: gradientMove 4s ease infinite;
-  filter: blur(15px);
-}
-
-@keyframes gradientMove {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-.reveal-text {
-  font-size: 6rem;
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  line-height: 1.2;
-  margin-bottom: 1rem;
-  position: relative;
-}
-
-.text-word {
-  display: inline-block;
-  position: relative;
-  margin: 0 0.2em;
-}
-
-.text-char {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(50px);
-  animation: fadeInUp 0.8s forwards;
-  transition: all 0.3s ease;
-  position: relative;
-  cursor: none;
-}
-
-.text-char.hide {
-  opacity: 0 !important;
-  transform: scale(0);
-  transition: all 0.3s ease;
-}
-
-/* Particle explosion */
-.particle {
-  position: fixed;
-  font-size: 1.5rem;
-  font-family: 'Cormorant Garamond', serif;
-  color: #b76e79;
-  pointer-events: none;
-  z-index: 9999;
-  animation: explode 1.5s ease-out forwards;
-  text-shadow: 0 0 10px rgba(183, 110, 121, 0.7);
-}
-
-@keyframes explode {
-  0% {
-    opacity: 1;
-    transform: translate(0, 0) rotate(0deg) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(var(--tx), var(--ty)) rotate(var(--rotation)) scale(0.1);
-  }
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.subtitle {
-  font-size: 1.3rem;
-  color: #a8dadc;
-  letter-spacing: 3px;
-  margin-bottom: 2rem;
-  opacity: 0;
-  animation: fadeIn 1s 1s forwards;
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-
-.description {
-  font-size: 1rem;
-  line-height: 1.8;
-  color: #ccc;
-  max-width: 600px;
-  margin: 0 0 2rem;
-  opacity: 0;
-  animation: fadeIn 1s 1.5s forwards;
-}
-
-.cta-buttons {
-  display: flex;
-  gap: 2rem;
-  opacity: 0;
-  animation: fadeIn 1s 2s forwards;
-}
-
-.btn {
-  padding: 1rem 2.5rem;
-  border: 2px solid #b76e79;
-  background: transparent;
-  color: #fff;
-  font-size: 1rem;
-  letter-spacing: 1px;
-  cursor: none;
-  transition: all 0.3s;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.btn:hover {
-  background: #b76e79;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(183, 110, 121, 0.4);
-}
-
-.btn.secondary {
-  border-color: #c9b6e4;
-}
-
-.btn.secondary:hover {
-  background: #c9b6e4;
-  border-color: #c9b6e4;
-}
-
-/* Work Section */
-.work-section {
-  position: relative;
-  padding: 8rem 4rem;
-  z-index: 1;
-}
-
-.section-title {
-  font-size: 4rem;
-  font-family: 'Cormorant Garamond', serif;
-  text-align: center;
-  margin-bottom: 4rem;
-  color: #b76e79;
-}
-
-.work-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 3rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.work-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(183, 110, 121, 0.2);
-  padding: 3rem;
-  border-radius: 20px;
-  transition: all 0.4s;
-}
-
-.work-card:hover {
-  transform: translateY(-10px);
-  border-color: rgba(183, 110, 121, 0.6);
-  box-shadow: 0 20px 60px rgba(183, 110, 121, 0.2);
-}
-
-.work-card h3 {
-  font-size: 1.8rem;
-  font-family: 'Cormorant Garamond', serif;
-  color: #c9b6e4;
-  margin-bottom: 1.5rem;
-}
-
-.work-card ul {
-  list-style: none;
-}
-
-.work-card li {
-  padding: 0.8rem 0;
-  color: #ccc;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Contact Section with Keyboard */
-.contact-section {
-  position: relative;
-  padding: 8rem 4rem;
-  z-index: 1;
-}
-
-.typing-display {
-  max-width: 800px;
-  margin: 0 auto 3rem;
-  min-height: 80px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(183, 110, 121, 0.3);
-  border-radius: 12px;
-  padding: 1.5rem;
-  font-size: 1.5rem;
-  font-family: 'Cormorant Garamond', serif;
-  color: #c9b6e4;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  word-wrap: break-word;
-  white-space: pre-wrap;
-}
-
-.typing-display::after {
-  content: '|';
-  animation: blink 1s infinite;
-  margin-left: 4px;
-}
-
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
-
-.keyboard-container {
-  max-width: 1000px;
-  margin: 4rem auto;
-  perspective: 1500px;
-}
-
-.keyboard {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  transform: rotateX(30deg);
-  transform-style: preserve-3d;
-}
-
-.keyboard-row {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-}
-
-.key {
-  background: linear-gradient(145deg, #1a1f29, #0f1419);
-  border: 2px solid rgba(183, 110, 121, 0.4);
-  padding: 1.2rem 1.5rem;
-  font-size: 1rem;
-  color: #fff;
-  border-radius: 8px;
-  cursor: none;
-  transition: all 0.2s;
-  box-shadow: 
-    0 12px 24px rgba(0, 0, 0, 0.7),
-    0 6px 12px rgba(183, 110, 121, 0.2),
-    inset 0 2px 4px rgba(255, 255, 255, 0.1),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.5);
-  transform: translateZ(20px);
-  transform-style: preserve-3d;
-  position: relative;
-  min-width: 50px;
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-  user-select: none;
-  isolation: isolate;
-}
-
-.key::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(145deg, rgba(183, 110, 121, 0.3), rgba(201, 182, 228, 0.3));
-  border-radius: 8px;
-  opacity: 0;
-  transition: opacity 0.3s;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.key::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 5%;
-  right: 5%;
-  height: 20px;
-  background: linear-gradient(to bottom, rgba(183, 110, 121, 0.4), transparent);
-  filter: blur(10px);
-  pointer-events: none;
-  z-index: -2;
-}
-
-.key:hover {
-  transform: translateZ(40px) translateY(-8px);
-  border-color: #b76e79;
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.8),
-    0 10px 20px rgba(183, 110, 121, 0.5),
-    inset 0 2px 4px rgba(255, 255, 255, 0.2),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.key:hover::before {
-  opacity: 1;
-}
-
-.key:active, .key.active {
-  transform: translateZ(10px) translateY(-2px);
-  box-shadow: 
-    0 8px 16px rgba(0, 0, 0, 0.6),
-    0 4px 8px rgba(183, 110, 121, 0.4),
-    inset 0 1px 2px rgba(255, 255, 255, 0.1);
-}
-
-.key.space {
-  flex: 0 0 300px;
-}
-
-.key.special {
-  background: linear-gradient(145deg, #242936, #1a1f29);
-  border-color: rgba(201, 182, 228, 0.5);
-}
-
-.key.special:hover {
-  transform: translateZ(40px) translateY(-8px);
-  border-color: #c9b6e4;
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.8),
-    0 10px 20px rgba(201, 182, 228, 0.5),
-    inset 0 2px 4px rgba(255, 255, 255, 0.2),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.key.wide {
-  flex: 0 0 100px;
-}
-
-.contact-info {
-  display: flex;
-  justify-content: center;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-  margin-top: 4rem;
-}
-
-.contact-card {
-  background: linear-gradient(145deg, rgba(183, 110, 121, 0.12), rgba(201, 182, 228, 0.12));
-  backdrop-filter: blur(20px);
-  border: 2px solid transparent;
-  background-clip: padding-box;
-  border-radius: 25px;
-  padding: 2.5rem 3rem;
-  min-width: 300px;
-  text-align: center;
-  transition: all 0.5s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.contact-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 25px;
-  padding: 2px;
-  background: linear-gradient(135deg, #b76e79, #c9b6e4, #b76e79);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0.5;
-  transition: opacity 0.5s ease;
-}
-
-.contact-card::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(201, 182, 228, 0.15) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.contact-card:hover::before {
-  opacity: 0.8;
-}
-
-.contact-card:hover::after {
-  opacity: 1;
-}
-
-.contact-card:hover {
-  transform: translateY(-10px) scale(1.03);
-  box-shadow: 
-    0 20px 40px rgba(183, 110, 121, 0.3),
-    0 0 30px rgba(201, 182, 228, 0.2),
-    inset 0 0 20px rgba(255, 255, 255, 0.05);
-}
-
-.contact-card strong {
-  display: block;
-  color: #c9b6e4;
-  font-size: 0.85rem;
-  letter-spacing: 2px;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  font-weight: 600;
-  position: relative;
-  z-index: 1;
-}
-
-.contact-card a {
-  color: #b76e79;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1.1rem;
-  transition: all 0.4s ease;
-  display: inline-block;
-  position: relative;
-  z-index: 1;
-}
-
-.contact-card a::before {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #c9b6e4, transparent);
-  transition: width 0.4s ease;
-}
-
-.contact-card:hover a {
-  color: #c9b6e4;
-  text-shadow: 0 0 15px rgba(201, 182, 228, 0.5);
-  transform: translateY(-3px);
-}
-
-.contact-card:hover a::before {
-  width: 100%;
-}
-
-.contact-card p {
-  font-size: 1.1rem;
-  color: #fff;
-  margin: 0;
-  position: relative;
-  z-index: 1;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 3rem;
-  color: #888;
-  font-size: 0.9rem;
-  position: relative;
-  z-index: 1;
-}
-
-@media (max-width: 1024px) {
-  .text-container {
-    flex-direction: column-reverse;
-    gap: 3rem;
-  }
-
-  .hero-content {
-    text-align: center;
-  }
-
-  .description {
-    margin: 0 auto 2rem;
-  }
-
-  .cta-buttons {
-    justify-content: center;
-  }
-
-  .profile-picture-container {
-    width: 280px;
-    height: 340px;
-  }
-
-  .reveal-text {
-    font-size: 4.5rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .profile-picture-container {
-    width: 220px;
-    height: 280px;
-  }
-
-  .reveal-text {
-    font-size: 3rem;
-  }
-  
-  nav {
-    padding: 1.5rem 2rem;
-  }
-  
-  .nav-links {
-    gap: 1rem;
-  }
-  
-  .keyboard-row {
-    gap: 0.3rem;
-  }
-  
-  .key {
-    padding: 0.8rem 1rem;
-    font-size: 0.8rem;
-    min-width: 35px;
-  }
-  
-  .key.space {
-    flex: 0 0 200px;
-  }
-
-  .key.wide {
-    flex: 0 0 70px;
-  }
-
-  .typing-display {
-    font-size: 1.2rem;
-    padding: 1rem;
-    min-height: 60px;
-  }
-
-  .contact-card {
-    min-width: 260px;
-    padding: 2rem 2.5rem;
-  }
-
-  .subtitle {
-    font-size: 1.1rem;
-  }
-
-  .description {
-    font-size: 0.95rem;
-  }
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dikshya Khanal - Frontend Developer Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #0f1419;
+      color: #fff;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* Custom Cursor with Trail - never intercepts pointer */
+    .cursor, .cursor-dot, .cursor-trail { pointer-events: none !important; }
+
+    .cursor {
+      position: fixed; width: 30px; height: 30px;
+      border: 2px solid #a8dadc; border-radius: 50%;
+      z-index: 10000; transition: transform 0.15s ease; mix-blend-mode: screen;
+    }
+    .cursor-dot {
+      position: fixed; width: 10px; height: 10px;
+      background: #a8dadc; border-radius: 50%;
+      z-index: 10001; transition: transform 0.1s ease;
+      box-shadow: 0 0 10px rgba(168,218,220,0.8);
+    }
+    .cursor-trail {
+      position: fixed; width: 15px; height: 15px;
+      background: radial-gradient(circle, rgba(168,218,220,0.6) 0%, transparent 70%);
+      border-radius: 50%; z-index: 9999; opacity: 0;
+      animation: fadeTrail 0.5s ease-out forwards;
+    }
+    @keyframes fadeTrail { 0%{opacity:1; transform:scale(1)} 100%{opacity:0; transform:scale(0.5)} }
+
+    /* Galaxy Canvas */
+    #galaxy-canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; }
+
+    /* Navigation */
+    nav {
+      position: fixed; top: 0; width: 100%;
+      padding: 2rem 4rem;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 100; background: rgba(15,20,25,0.5); backdrop-filter: blur(10px);
+    }
+    .logo { font-size: 1.5rem; font-family: 'Cormorant Garamond', serif; color: #b76e79; font-weight: 600; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: #fff; text-decoration: none; font-size: 0.9rem; letter-spacing: 1px; transition: color 0.3s; }
+    .nav-links a:hover { color: #c9b6e4; }
+
+    /* Hero */
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 4rem 2rem; z-index: 1; overflow: hidden; }
+    .text-container { display: flex; align-items: center; gap: 4rem; max-width: 1200px; width: 100%; }
+    .hero-content { flex: 1; text-align: left; }
+
+    /* Profile Picture */
+    .profile-picture-container { position: relative; width: 350px; height: 420px; perspective: 1000px; flex-shrink: 0; }
+    .profile-picture {
+      width: 100%; height: 100%; border-radius: 20px; object-fit: cover;
+      border: 3px solid rgba(183,110,121,0.6);
+      box-shadow: 0 20px 60px rgba(183,110,121,0.3), 0 0 30px rgba(201,182,228,0.2), inset 0 0 20px rgba(255,255,255,0.05);
+      transition: all 0.6s ease; cursor: none; position: relative; z-index: 2;
+      transform: perspective(800px) rotateY(-5deg) rotateX(2deg);
+    }
+    .profile-picture-container:hover .profile-picture {
+      transform: perspective(800px) rotateY(-8deg) rotateX(-5deg) translateY(-15px);
+      border-color: #b76e79;
+      box-shadow: 0 30px 70px rgba(183,110,121,0.4), 0 0 40px rgba(201,182,228,0.3), inset 0 0 30px rgba(255,255,255,0.1);
+    }
+    .profile-picture-container::before {
+      content: ''; position: absolute; inset: -10px; border-radius: 25px;
+      background: linear-gradient(135deg, #b76e79, #c9b6e4, #b76e79, #c9b6e4);
+      background-size: 300% 300%; opacity: 0.3; z-index: 1; animation: gradientMove 4s ease infinite; filter: blur(15px);
+    }
+    @keyframes gradientMove { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+
+    .reveal-text { font-size: 6rem; font-family: 'Cormorant Garamond', serif; font-weight: 300; line-height: 1.2; margin-bottom: 1rem; position: relative; }
+    .text-word { display: inline-block; position: relative; margin: 0 0.2em; }
+    .text-char { display: inline-block; opacity: 0; transform: translateY(50px); animation: fadeInUp 0.8s forwards; transition: all 0.3s ease; position: relative; cursor: none; }
+    .text-char.hide { opacity: 0 !important; transform: scale(0); transition: all 0.3s ease; }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+    .particle {
+      position: fixed; font-size: 1.5rem; font-family: 'Cormorant Garamond', serif; color: #b76e79; pointer-events: none; z-index: 9999;
+      animation: explode 1.5s ease-out forwards; text-shadow: 0 0 10px rgba(183,110,121,0.7);
+    }
+    @keyframes explode { 0%{opacity:1; transform:translate(0,0) rotate(0deg) scale(1)} 100%{opacity:0; transform:translate(var(--tx),var(--ty)) rotate(var(--rotation)) scale(0.1)} }
+
+    .subtitle { font-size: 1.3rem; color: #a8dadc; letter-spacing: 3px; margin-bottom: 2rem; opacity: 0; animation: fadeIn 1s 1s forwards; }
+    .description { font-size: 1rem; line-height: 1.8; color: #ccc; max-width: 600px; margin: 0 0 2rem; opacity: 0; animation: fadeIn 1s 1.5s forwards; }
+    .cta-buttons { display: flex; gap: 2rem; opacity: 0; animation: fadeIn 1s 2s forwards; }
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    .btn { padding: 1rem 2.5rem; border: 2px solid #b76e79; background: transparent; color: #fff; font-size: 1rem; letter-spacing: 1px; cursor: none; transition: all 0.3s; text-decoration: none; display: inline-block; }
+    .btn:hover { background: #b76e79; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(183,110,121,0.4); }
+    .btn.secondary { border-color: #c9b6e4; }
+    .btn.secondary:hover { background: #c9b6e4; border-color: #c9b6e4; }
+
+    /* Work Section */
+    .work-section { position: relative; padding: 8rem 4rem; z-index: 1; }
+    .section-title { font-size: 4rem; font-family: 'Cormorant Garamond', serif; text-align: center; margin-bottom: 4rem; color: #b76e79; }
+    .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; max-width: 1200px; margin: 0 auto; }
+    .work-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(183,110,121,0.2); padding: 3rem; border-radius: 20px; transition: all 0.4s; }
+    .work-card:hover { transform: translateY(-10px); border-color: rgba(183,110,121,0.6); box-shadow: 0 20px 60px rgba(183,110,121,0.2); }
+    .work-card h3 { font-size: 1.8rem; font-family: 'Cormorant Garamond', serif; color: #c9b6e4; margin-bottom: 1.5rem; }
+    .work-card li { padding: 0.8rem 0; color: #ccc; border-bottom: 1px solid rgba(255,255,255,0.1); list-style: none; }
+
+    /* Contact Section with Keyboard */
+    .contact-section { position: relative; padding: 8rem 4rem; z-index: 1; }
+    .typing-display {
+      max-width: 800px; margin: 0 auto 3rem; min-height: 80px;
+      background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);
+      border: 2px solid rgba(183,110,121,0.3); border-radius: 12px;
+      padding: 1.5rem; font-size: 1.5rem; font-family: 'Cormorant Garamond', serif; color: #c9b6e4; text-align: center;
+      display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; word-wrap: break-word; white-space: pre-wrap;
+    }
+    .typing-display::after { content: '|'; animation: blink 1s infinite; margin-left: 4px; }
+    @keyframes blink { 0%,50%{opacity:1} 51%,100%{opacity:0} }
+
+    /* 3D Keyboard Container - FIXED with proper stacking */
+    .keyboard-container { 
+      max-width: 1100px; 
+      margin: 4rem auto; 
+      perspective: 2000px;
+      perspective-origin: center center;
+    }
+    .keyboard { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 0.5rem; 
+      transform: rotateX(25deg);
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+    .keyboard-row { 
+      display: flex; 
+      gap: 0.5rem; 
+      justify-content: center; 
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    /* CRITICAL FIX: Wrapper to maintain clickable area */
+    .key {
+      background: linear-gradient(145deg, #1a1f29, #0f1419);
+      border: 2px solid rgba(183,110,121,0.4);
+      padding: 1.2rem 1.5rem; 
+      font-size: 1rem; 
+      color: #fff; 
+      border-radius: 8px;
+      cursor: pointer; 
+      transition: all 0.2s ease;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.7), 0 6px 12px rgba(183,110,121,0.2), inset 0 2px 4px rgba(255,255,255,0.1), inset 0 -2px 4px rgba(0,0,0,0.5);
+      position: relative; 
+      min-width: 50px; 
+      text-align: center; 
+      font-family: 'Montserrat', sans-serif; 
+      font-weight: 500; 
+      user-select: none;
+      transform: translateZ(20px);
+      transform-style: preserve-3d;
+      will-change: transform;
+      /* CRITICAL: Add padding-bottom to account for 3D depth */
+      margin-bottom: 5px;
+    }
+
+    /* Ensure ALL inner content doesn't capture pointer events */
+    .key * { pointer-events: none !important; }
+    .key .shift-char { display: block; font-size: 0.8rem; color: #c9b6e4; opacity: 0.7; margin-bottom: 4px; }
+    .key .main-char { display: block; }
+
+    .key::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(145deg, rgba(183,110,121,0.3), rgba(201,182,228,0.3));
+      border-radius: 8px; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: -1;
+    }
+    .key::after {
+      content: ''; position: absolute; top: 100%; left: 5%; right: 5%; height: 20px;
+      background: linear-gradient(to bottom, rgba(183,110,121,0.4), transparent);
+      filter: blur(10px); pointer-events: none; z-index: -2;
+    }
+
+    .key:hover, .key.active {
+      transform: translateZ(40px) translateY(-8px); 
+      border-color: #b76e79;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 10px 20px rgba(183,110,121,0.5), inset 0 2px 4px rgba(255,255,255,0.2), inset 0 -2px 4px rgba(0,0,0,0.3);
+    }
+    .key:hover::before { opacity: 1; }
+    .key:active, .key.active { 
+      transform: translateZ(10px) translateY(-2px); 
+      box-shadow: 0 8px 16px rgba(0,0,0,0.6), 0 4px 8px rgba(183,110,121,0.4), inset 0 1px 2px rgba(255,255,255,0.1); 
+    }
+
+    /* Special sizes */
+    .key.space { flex: 0 0 320px; }
+    .key.special { background: linear-gradient(145deg, #242936, #1a1f29); border-color: rgba(201,182,228,0.5); }
+    .key.wide { flex: 0 0 100px; }
+
+    /* Contact cards */
+    .contact-info { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; margin-top: 4rem; }
+    .contact-card {
+      background: linear-gradient(145deg, rgba(183,110,121,0.12), rgba(201,182,228,0.12));
+      backdrop-filter: blur(20px); border: 2px solid transparent; background-clip: padding-box; border-radius: 25px;
+      padding: 2.5rem 3rem; min-width: 300px; text-align: center; transition: all 0.5s ease; position: relative; overflow: hidden;
+    }
+    .contact-card::before {
+      content: ''; position: absolute; inset: 0; border-radius: 25px; padding: 2px;
+      background: linear-gradient(135deg, #b76e79, #c9b6e4, #b76e79);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      opacity: 0.5; transition: opacity 0.5s ease;
+    }
+    .contact-card::after {
+      content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(201,182,228,0.15) 0%, transparent 70%);
+      opacity: 0; transition: opacity 0.5s ease;
+    }
+    .contact-card:hover::before { opacity: 0.8; }
+    .contact-card:hover::after { opacity: 1; }
+    .contact-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 20px 40px rgba(183,110,121,0.3), 0 0 30px rgba(201,182,228,0.2), inset 0 0 20px rgba(255,255,255,0.05);
+    }
+    .contact-card strong { display: block; color: #c9b6e4; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 1rem; text-transform: uppercase; font-weight: 600; position: relative; z-index: 1; }
+    .contact-card a {
+      color: #b76e79; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: all 0.4s ease; display: inline-block; position: relative; z-index: 1;
+    }
+    .contact-card a::before {
+      content: ''; position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%);
+      width: 0; height: 2px; background: linear-gradient(90deg, transparent, #c9b6e4, transparent); transition: width 0.4s ease;
+    }
+    .contact-card:hover a { color: #c9b6e4; text-shadow: 0 0 15px rgba(201,182,228,0.5); transform: translateY(-3px); }
+    .contact-card:hover a::before { width: 100%; }
+    .contact-card p { font-size: 1.1rem; color: #fff; margin: 0; position: relative; z-index: 1; }
+
+    /* Footer */
+    footer { text-align: center; padding: 3rem; color: #888; font-size: 0.9rem; position: relative; z-index: 1; }
+
+    @media (max-width: 1024px) {
+      .text-container { flex-direction: column-reverse; gap: 3rem; }
+      .hero-content { text-align: center; }
+      .description { margin: 0 auto 2rem; }
+      .cta-buttons { justify-content: center; }
+      .profile-picture-container { width: 280px; height: 340px; }
+      .reveal-text { font-size: 4.5rem; }
+      .keyboard { transform: rotateX(15deg); }
+    }
+    @media (max-width: 768px) {
+      .profile-picture-container { width: 220px; height: 280px; }
+      .reveal-text { font-size: 3rem; }
+      nav { padding: 1.5rem 2rem; }
+      .nav-links { gap: 1rem; }
+      .keyboard { transform: rotateX(10deg); }
+      .keyboard-row { gap: 0.3rem; }
+      .key { padding: 0.8rem 0.8rem; font-size: 0.75rem; min-width: 32px; }
+      .key.space { flex: 0 0 180px; }
+      .key.wide { flex: 0 0 65px; }
+      .typing-display { font-size: 1.2rem; padding: 1rem; min-height: 60px; }
+      .contact-card { min-width: 260px; padding: 2rem 2.5rem; }
+      .subtitle { font-size: 1.1rem; }
+      .description { font-size: 0.95rem; }
+    }
+  </style>
 </head>
 <body>
 
-<canvas id="galaxy-canvas"></canvas>
+  <canvas id="galaxy-canvas"></canvas>
 
-<div class="cursor"></div>
-<div class="cursor-dot"></div>
+  <div class="cursor"></div>
+  <div class="cursor-dot"></div>
 
-<nav>
-  <div class="logo">Dikshya Khanal</div>
-  <ul class="nav-links">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+  <nav>
+    <div class="logo">Dikshya Khanal</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-<section class="hero" id="home">
-  <div class="text-container">
-    <div class="hero-content">
-      <h1 class="reveal-text" id="main-title">Dikshya Khanal</h1>
-      <p class="subtitle">Aspiring Frontend Developer</p>
-      <p class="description">
-        Learning React, Next.js, HTML, CSS, Tailwind CSS and JavaScript. 
-        Creating personal projects like websites, dashboards, and blogs. 
-        Passionate about building clean, responsive web applications.
-      </p>
-      <div class="cta-buttons">
-        <a href="#work" class="btn">View Projects</a>
-        <a href="#contact" class="btn secondary">Get in Touch</a>
+  <section class="hero" id="home">
+    <div class="text-container">
+      <div class="hero-content">
+        <h1 class="reveal-text" id="main-title">Dikshya Khanal</h1>
+        <p class="subtitle">Aspiring Frontend Developer</p>
+        <p class="description">
+          Learning React, Next.js, HTML, CSS, Tailwind CSS and JavaScript.
+          Creating personal projects like websites, dashboards, and blogs.
+          Passionate about building clean, responsive web applications.
+        </p>
+        <div class="cta-buttons">
+          <a href="#work" class="btn">View Projects</a>
+          <a href="#contact" class="btn secondary">Get in Touch</a>
+        </div>
+      </div>
+      <div class="profile-picture-container">
+        <img src="profile-picture (2).jpg" alt="Dikshya Khanal" class="profile-picture">
       </div>
     </div>
-    <div class="profile-picture-container">
-      <img src="profile-picture (2).jpg" alt="Dikshya Khanal" class="profile-picture">
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="work-section" id="work">
-  <h2 class="section-title">Technical Projects</h2>
-  <div class="work-grid">
-    <div class="work-card">
-      <h3>✦ Skills</h3>
-      <ul>
-        <li>Frontend: HTML, CSS, Tailwind CSS</li>
-        <li>JavaScript (ES6+), React.js, Next.js</li>
-        <li>Responsive & Mobile-First Design</li>
-        <li>RESTful API Integration</li>
-        <li>Git & GitHub Version Control</li>
-      </ul>
-    </div>
-    <div class="work-card">
-      <h3>✦ Projects</h3>
-      <ul>
-        <li>Tilottama Campus CMS</li>
-        <li>Bamboo-Craft E-commerce</li>
-        <li>CMS Project (React + Vite)</li>
-        <li>React Website with Dashboard</li>
-        <li>JavaScript Practice Collection</li>
-        <li>Achar Blog Project</li>
-        <li>Go-Healthy Static Website</li>
-      </ul>
-    </div>
-    <div class="work-card">
-      <h3>✦ Education</h3>
-      <ul>
-        <li>BSc IT - Butwal Multiple Campus</li>
-        <li>High School - Tilottama Campus</li>
-        <li>SEE - Smriti English Boarding School</li>
-        <li>Web Development Training</li>
-        <li>Butwal Multiple Campus</li>
-        <li>Hub IT Group Pvt Ltd</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="contact-section" id="contact">
-  <h2 class="section-title">Let's Connect</h2>
-  
-  <div class="typing-display" id="typing-display"></div>
-  
-  <div class="keyboard-container">
-    <div class="keyboard" id="keyboard">
-      <div class="keyboard-row">
-        <div class="key" data-key="1">1</div>
-        <div class="key" data-key="2">2</div>
-        <div class="key" data-key="3">3</div>
-        <div class="key" data-key="4">4</div>
-        <div class="key" data-key="5">5</div>
-        <div class="key" data-key="6">6</div>
-        <div class="key" data-key="7">7</div>
-        <div class="key" data-key="8">8</div>
-        <div class="key" data-key="9">9</div>
-        <div class="key" data-key="0">0</div>
+  <section class="work-section" id="work">
+    <h2 class="section-title">Technical Projects</h2>
+    <div class="work-grid">
+      <div class="work-card">
+        <h3>✦ Skills</h3>
+        <ul>
+          <li>Frontend: HTML, CSS, Tailwind CSS</li>
+          <li>JavaScript (ES6+), React.js, Next.js</li>
+          <li>Responsive & Mobile-First Design</li>
+          <li>RESTful API Integration</li>
+          <li>Git & GitHub Version Control</li>
+        </ul>
       </div>
-      <div class="keyboard-row">
-        <div class="key" data-key="Q">Q</div>
-        <div class="key" data-key="W">W</div>
-        <div class="key" data-key="E">E</div>
-        <div class="key" data-key="R">R</div>
-        <div class="key" data-key="T">T</div>
-        <div class="key" data-key="Y">Y</div>
-        <div class="key" data-key="U">U</div>
-        <div class="key" data-key="I">I</div>
-        <div class="key" data-key="O">O</div>
-        <div class="key" data-key="P">P</div>
+      <div class="work-card">
+        <h3>✦ Projects</h3>
+        <ul>
+          <li>Tilottama Campus CMS</li>
+          <li>Bamboo-Craft E-commerce</li>
+          <li>CMS Project (React + Vite)</li>
+          <li>React Website with Dashboard</li>
+          <li>JavaScript Practice Collection</li>
+          <li>Achar Blog Project</li>
+          <li>Go-Healthy Static Website</li>
+        </ul>
       </div>
-      <div class="keyboard-row">
-        <div class="key" data-key="A">A</div>
-        <div class="key" data-key="S">S</div>
-        <div class="key" data-key="D">D</div>
-        <div class="key" data-key="F">F</div>
-        <div class="key" data-key="G">G</div>
-        <div class="key" data-key="H">H</div>
-        <div class="key" data-key="J">J</div>
-        <div class="key" data-key="K">K</div>
-        <div class="key" data-key="L">L</div>
-      </div>
-      <div class="keyboard-row">
-        <div class="key special wide" data-key="Shift">Shift</div>
-        <div class="key" data-key="Z">Z</div>
-        <div class="key" data-key="X">X</div>
-        <div class="key" data-key="C">C</div>
-        <div class="key" data-key="V">V</div>
-        <div class="key" data-key="B">B</div>
-        <div class="key" data-key="N">N</div>
-        <div class="key" data-key="M">M</div>
-        <div class="key special wide" data-key="Backspace">⌫</div>
-      </div>
-      <div class="keyboard-row">
-        <div class="key special wide" data-key="Enter">Enter</div>
-        <div class="key space" data-key=" ">Space</div>
-        <div class="key special wide" data-key="Clear">Clear</div>
+      <div class="work-card">
+        <h3>✦ Education</h3>
+        <ul>
+          <li>BSc IT - Butwal Multiple Campus</li>
+          <li>High School - Tilottama Campus</li>
+          <li>SEE - Smriti English Boarding School</li>
+          <li>Web Development Training</li>
+          <li>Butwal Multiple Campus</li>
+          <li>Hub IT Group Pvt Ltd</li>
+        </ul>
       </div>
     </div>
-  </div>
-  
-  <div class="contact-info">
-    <div class="contact-card">
-      <p><strong>Phone</strong></p>
-      <p><a href="tel:+9779786694392">+977 9786694392</a></p>
-    </div>
-    <div class="contact-card">
-      <p><strong>Email</strong></p>
-      <p><a href="mailto:dikshyak88@gmail.com">dikshyak88@gmail.com</a></p>
-    </div>
-    <div class="contact-card">
-      <p><strong>Location</strong></p>
-      <p><a href="https://maps.google.com/?q=Nepal,Butwal" target="_blank">Nepal, Butwal</a></p>
-    </div>
-    <div class="contact-card">
-      <p><strong>GitHub</strong></p>
-      <p><a href="https://github.com/deekxa" target="_blank">github.com/deekxa</a></p>
-    </div>
-    <div class="contact-card">
-      <p><strong>Portfolio</strong></p>
-      <p><a href="https://dikshyakhanal.com.np" target="_blank">dikshyakhanal.com.np</a></p>
-    </div>
-  </div>
+  </section>
 
-</section>
+  <section class="contact-section" id="contact">
+    <h2 class="section-title">Let's Connect</h2>
 
-<footer>
-  <p>© 2025 Dikshya Khanal. Designed & Developed with Passion.</p>
-</footer>
+    <div class="typing-display" id="typing-display"></div>
 
-<script>
-// Galaxy Canvas
-const canvas = document.getElementById('galaxy-canvas');
-const ctx = canvas.getContext('2d');
-let w = canvas.width = window.innerWidth;
-let h = canvas.height = window.innerHeight;
+    <div class="keyboard-container">
+      <div class="keyboard" id="keyboard">
+        <!-- Number Row with Shift Characters -->
+        <div class="keyboard-row">
+          <div class="key" data-key="1" data-shift="!"><span class="shift-char">!</span><span class="main-char">1</span></div>
+          <div class="key" data-key="2" data-shift="@"><span class="shift-char">@</span><span class="main-char">2</span></div>
+          <div class="key" data-key="3" data-shift="#"><span class="shift-char">#</span><span class="main-char">3</span></div>
+          <div class="key" data-key="4" data-shift="$"><span class="shift-char">$</span><span class="main-char">4</span></div>
+          <div class="key" data-key="5" data-shift="%"><span class="shift-char">%</span><span class="main-char">5</span></div>
+          <div class="key" data-key="6" data-shift="^"><span class="shift-char">^</span><span class="main-char">6</span></div>
+          <div class="key" data-key="7" data-shift="&"><span class="shift-char">&</span><span class="main-char">7</span></div>
+          <div class="key" data-key="8" data-shift="*"><span class="shift-char">*</span><span class="main-char">8</span></div>
+          <div class="key" data-key="9" data-shift="("><span class="shift-char">(</span><span class="main-char">9</span></div>
+          <div class="key" data-key="0" data-shift=")"><span class="shift-char">)</span><span class="main-char">0</span></div>
+          <div class="key" data-key="-" data-shift="_"><span class="shift-char">_</span><span class="main-char">-</span></div>
+          <div class="key" data-key="=" data-shift="+"><span class="shift-char">+</span><span class="main-char">=</span></div>
+        </div>
+        <!-- QWERTY Row -->
+        <div class="keyboard-row">
+          <div class="key" data-key="Q">Q</div>
+          <div class="key" data-key="W">W</div>
+          <div class="key" data-key="E">E</div>
+          <div class="key" data-key="R">R</div>
+          <div class="key" data-key="T">T</div>
+          <div class="key" data-key="Y">Y</div>
+          <div class="key" data-key="U">U</div>
+          <div class="key" data-key="I">I</div>
+          <div class="key" data-key="O">O</div>
+          <div class="key" data-key="P">P</div>
+          <div class="key" data-key="[" data-shift="{"><span class="shift-char">{</span><span class="main-char">[</span></div>
+          <div class="key" data-key="]" data-shift="}"><span class="shift-char">}</span><span class="main-char">]</span></div>
+        </div>
+        <!-- ASDF Row -->
+        <div class="keyboard-row">
+          <div class="key" data-key="A">A</div>
+          <div class="key" data-key="S">S</div>
+          <div class="key" data-key="D">D</div>
+          <div class="key" data-key="F">F</div>
+          <div class="key" data-key="G">G</div>
+          <div class="key" data-key="H">H</div>
+          <div class="key" data-key="J">J</div>
+          <div class="key" data-key="K">K</div>
+          <div class="key" data-key="L">L</div>
+          <div class="key" data-key=";" data-shift=":"><span class="shift-char">:</span><span class="main-char">;</span></div>
+          <div class="key" data-key="'" data-shift='"'><span class="shift-char">"</span><span class="main-char">'</span></div>
+          <div class="key" data-key="\" data-shift="|"><span class="shift-char">|</span><span class="main-char">\</span></div>
+        </div>
+        <!-- ZXCV Row and Backspace -->
+        <div class="keyboard-row">
+          <div class="key special wide" data-key="Shift">Shift</div>
+          <div class="key" data-key="Z">Z</div>
+          <div class="key" data-key="X">X</div>
+          <div class="key" data-key="C">C</div>
+          <div class="key" data-key="V">V</div>
+          <div class="key" data-key="B">B</div>
+          <div class="key" data-key="N">N</div>
+          <div class="key" data-key="M">M</div>
+          <div class="key" data-key="," data-shift="<"><span class="shift-char"><</span><span class="main-char">,</span></div>
+          <div class="key" data-key="." data-shift=">"><span class="shift-char">></span><span class="main-char">.</span></div>
+          <div class="key" data-key="/" data-shift="?"><span class="shift-char">?</span><span class="main-char">/</span></div>
+          <div class="key special wide" data-key="Backspace">⌫</div>
+        </div>
+        <!-- Bottom Row -->
+        <div class="keyboard-row">
+          <div class="key special wide" data-key="Enter">Enter</div>
+          <div class="key space" data-key=" ">Space</div>
+          <div class="key special wide" data-key="Clear">Clear</div>
+        </div>
+      </div>
+    </div>
 
-window.addEventListener('resize', () => {
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
-});
+    <div class="contact-info">
+      <div class="contact-card">
+        <p><strong>Phone</strong></p>
+        <p><a href="tel:+9779786694392">+977 9786694392</a></p>
+      </div>
+      <div class="contact-card">
+        <p><strong>Email</strong></p>
+        <p><a href="mailto:dikshyak88@gmail.com">dikshyak88@gmail.com</a></p>
+      </div>
+      <div class="contact-card">
+        <p><strong>Location</strong></p>
+        <p><a href="https://maps.google.com/?q=Nepal,Butwal" target="_blank">Nepal, Butwal</a></p>
+      </div>
+      <div class="contact-card">
+        <p><strong>GitHub</strong></p>
+        <p><a href="https://github.com/deekxa" target="_blank">github.com/deekxa</a></p>
+      </div>
+      <div class="contact-card">
+        <p><strong>Portfolio</strong></p>
+        <p><a href="https://dikshyakhanal.com.np" target="_blank">dikshyakhanal.com.np</a></p>
+      </div>
+    </div>
 
-class Star {
-  constructor() {
-    this.x = Math.random() * w;
-    this.y = Math.random() * h;
-    this.size = Math.random() * 2;
-    this.speedX = (Math.random() - 0.5) * 0.5;
-    this.speedY = (Math.random() - 0.5) * 0.5;
-    this.opacity = Math.random();
-    this.opacitySpeed = (Math.random() - 0.5) * 0.01;
-  }
-  
-  update() {
-    this.x += this.speedX;
-    this.y += this.speedY;
-    this.opacity += this.opacitySpeed;
+  </section>
+
+  <footer>
+    <p>© 2025 Dikshya Khanal. Designed & Developed with Passion.</p>
+  </footer>
+
+  <script>
+    // Galaxy Canvas
+    const canvas = document.getElementById('galaxy-canvas');
+    const ctx = canvas.getContext('2d');
+    let w = canvas.width = window.innerWidth;
+    let h = canvas.height = window.innerHeight;
+    window.addEventListener('resize', () => { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; });
+
+    class Star {
+      constructor(){
+        this.x = Math.random()*w; this.y = Math.random()*h; this.size = Math.random()*2;
+        this.speedX = (Math.random()-0.5)*0.5; this.speedY = (Math.random()-0.5)*0.5;
+        this.opacity = Math.random(); this.opacitySpeed = (Math.random()-0.5)*0.01;
+      }
+      update(){
+        this.x += this.speedX; this.y += this.speedY; this.opacity += this.opacitySpeed;
+        if(this.opacity<=0 || this.opacity>=1) this.opacitySpeed *= -1;
+        if(this.x<0 || this.x>w) this.speedX *= -1;
+        if(this.y<0 || this.y>h) this.speedY *= -1;
+      }
+      draw(){
+        ctx.fillStyle = `rgba(201,182,228,${this.opacity})`;
+        ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill();
+      }
+    }
+    const stars = Array.from({length:200}, ()=>new Star());
+    function animate(){
+      ctx.fillStyle = 'rgba(15,20,25,0.1)'; ctx.fillRect(0,0,w,h);
+      stars.forEach(s=>{ s.update(); s.draw(); });
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Custom cursor with trail
+    const cursor = document.querySelector('.cursor');
+    const cursorDot = document.querySelector('.cursor-dot');
+    let mouseX=0, mouseY=0, cursorX=0, cursorY=0;
+    let lastTrailTime = 0;
+    document.addEventListener('mousemove', e=>{
+      mouseX=e.clientX; mouseY=e.clientY;
+      cursorDot.style.left=(mouseX-5)+'px'; cursorDot.style.top=(mouseY-5)+'px';
+      const now=Date.now();
+      if(now-lastTrailTime>30){ createTrail(mouseX,mouseY); lastTrailTime=now; }
+    });
+    function createTrail(x,y){
+      const trail=document.createElement('div');
+      trail.className='cursor-trail';
+      trail.style.left=(x-7.5)+'px'; trail.style.top=(y-7.5)+'px';
+      document.body.appendChild(trail);
+      setTimeout(()=>trail.remove(),500);
+    }
+    function updateCursor(){
+      cursorX += (mouseX-cursorX)*0.15; cursorY += (mouseY-cursorY)*0.15;
+      cursor.style.left=(cursorX-15)+'px'; cursor.style.top=(cursorY-15)+'px';
+      requestAnimationFrame(updateCursor);
+    }
+    updateCursor();
+
+    // Text hover particles
+    const title = document.getElementById('main-title');
+    const text = title.textContent;
+    title.innerHTML='';
+    const words = text.split(' ');
+    words.forEach((word,wi)=>{
+      const wordSpan=document.createElement('span'); wordSpan.className='text-word';
+      word.split('').forEach((c,ci)=>{
+        const span=document.createElement('span'); span.className='text-char'; span.textContent=c;
+        span.style.animationDelay=`${(wi*0.1)+(ci*0.05)}s`;
+        wordSpan.appendChild(span);
+      });
+      title.appendChild(wordSpan);
+      if(wi<words.length-1) title.appendChild(document.createTextNode(' '));
+    });
+    document.querySelectorAll('.text-char').forEach(char=>{
+      char.addEventListener('mouseenter',()=>{
+        const r=char.getBoundingClientRect(); const cx=r.left+r.width/2; const cy=r.top+r.height/2;
+        for(let i=0;i<8;i++){
+          const p=document.createElement('div'); p.className='particle'; p.textContent=char.textContent;
+          p.style.left=cx+'px'; p.style.top=cy+'px';
+          const angle=(Math.PI*2*i)/8; const velocity=50+Math.random()*50;
+          const tx=Math.cos(angle)*velocity; const ty=Math.sin(angle)*velocity;
+          p.style.setProperty('--tx',tx+'px'); p.style.setProperty('--ty',ty+'px');
+          p.style.setProperty('--rotation',(Math.random()*360-180)+'deg');
+          document.body.appendChild(p); setTimeout(()=>p.remove(),1500);
+        }
+        char.classList.add('hide'); setTimeout(()=>char.classList.remove('hide'),1500);
+      });
+    });
+
+    // Keyboard logic - 3D VERSION THAT WORKS!
+    let typedText=''; 
+    let isShift=false;
+    const typingDisplay=document.getElementById('typing-display');
+    const keys=document.querySelectorAll('.key');
+    const shiftKey=document.querySelector('.key[data-key="Shift"]');
+
+    function updateTypingDisplay(){ 
+      typingDisplay.textContent=typedText; 
+      if(typedText.length>150) typedText=typedText.slice(-150); 
+    }
     
-    if (this.opacity <= 0 || this.opacity >= 1) this.opacitySpeed *= -1;
-    if (this.x < 0 || this.x > w) this.speedX *= -1;
-    if (this.y < 0 || this.y > h) this.speedY *= -1;
-  }
-  
-  draw() {
-    ctx.fillStyle = `rgba(201, 182, 228, ${this.opacity})`;
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
-    ctx.fill();
-  }
-}
-
-const stars = Array.from({length:200}, () => new Star());
-
-function animate() {
-  ctx.fillStyle = 'rgba(15, 20, 25, 0.1)';
-  ctx.fillRect(0,0,w,h);
-  stars.forEach(s => { s.update(); s.draw(); });
-  requestAnimationFrame(animate);
-}
-animate();
-
-// Custom cursor with trail
-const cursor = document.querySelector('.cursor');
-const cursorDot = document.querySelector('.cursor-dot');
-let mouseX = 0, mouseY = 0;
-let cursorX = 0, cursorY = 0;
-
-// Trail effect
-let lastTrailTime = 0;
-document.addEventListener('mousemove', e => {
-  mouseX = e.clientX; 
-  mouseY = e.clientY;
-  cursorDot.style.left = (mouseX-5)+'px';
-  cursorDot.style.top = (mouseY-5)+'px';
-  
-  // Create trail particles
-  const now = Date.now();
-  if (now - lastTrailTime > 30) {
-    createTrail(mouseX, mouseY);
-    lastTrailTime = now;
-  }
-});
-
-function createTrail(x, y) {
-  const trail = document.createElement('div');
-  trail.className = 'cursor-trail';
-  trail.style.left = (x - 7.5) + 'px';
-  trail.style.top = (y - 7.5) + 'px';
-  document.body.appendChild(trail);
-  setTimeout(() => trail.remove(), 500);
-}
-
-function updateCursor(){
-  cursorX += (mouseX-cursorX)*0.15;
-  cursorY += (mouseY-cursorY)*0.15;
-  cursor.style.left = (cursorX-15)+'px';
-  cursor.style.top = (cursorY-15)+'px';
-  requestAnimationFrame(updateCursor);
-}
-updateCursor();
-
-// Text hover particles
-const title = document.getElementById('main-title');
-const text = title.textContent;
-title.innerHTML='';
-const words = text.split(' ');
-words.forEach((word,wi)=>{
-  const wordSpan = document.createElement('span');
-  wordSpan.className='text-word';
-  word.split('').forEach((c,ci)=>{
-    const span = document.createElement('span');
-    span.className='text-char';
-    span.textContent=c;
-    span.style.animationDelay=`${(wi*0.1)+(ci*0.05)}s`;
-    wordSpan.appendChild(span);
-  });
-  title.appendChild(wordSpan);
-  if(wi<words.length-1) title.appendChild(document.createTextNode(' '));
-});
-const chars=document.querySelectorAll('.text-char');
-chars.forEach(char=>{
-  char.addEventListener('mouseenter',()=>{
-    const r=char.getBoundingClientRect();
-    const cx=r.left+r.width/2;
-    const cy=r.top+r.height/2;
-    for(let i=0;i<8;i++){
-      const p=document.createElement('div');
-      p.className='particle'; p.textContent=char.textContent;
-      p.style.left=cx+'px'; p.style.top=cy+'px';
-      const angle=(Math.PI*2*i)/8;
-      const velocity=50+Math.random()*50;
-      const tx=Math.cos(angle)*velocity;
-      const ty=Math.sin(angle)*velocity;
-      p.style.setProperty('--tx',tx+'px');
-      p.style.setProperty('--ty',ty+'px');
-      p.style.setProperty('--rotation',(Math.random()*360-180)+'deg');
-      document.body.appendChild(p);
-      setTimeout(()=>p.remove(),1500);
+    function animateKey(key){ 
+      if(!key) return; 
+      key.classList.add('active'); 
+      setTimeout(()=>key.classList.remove('active'),150); 
     }
-    char.classList.add('hide');
-    setTimeout(()=>char.classList.remove('hide'),1500);
-  });
-});
-
-// Typing keyboard
-let typedText=''; let isShift=false;
-const typingDisplay=document.getElementById('typing-display');
-const keys=document.querySelectorAll('.key');
-function updateTypingDisplay(){ typingDisplay.textContent=typedText; if(typedText.length>100) typedText=typedText.slice(-100);}
-function animateKey(key){ key.classList.add('active'); setTimeout(()=>key.classList.remove('active'),150);}
-keys.forEach(key=>{
-  key.addEventListener('click',()=>{
-    const val=key.getAttribute('data-key');
-    animateKey(key);
-    switch(val){
-      case ' ': typedText+=' '; break;
-      case 'Backspace': typedText=typedText.slice(0,-1); break;
-      case 'Enter': typedText+='\n'; break;
-      case 'Shift': isShift=!isShift; key.classList.toggle('active',isShift); return;
-      case 'Clear': typedText=''; break;
-      default: typedText+=isShift?val:val.toLowerCase();
+    
+    function updateShiftState(newState){
+      isShift=newState;
+      if(shiftKey){ shiftKey.classList.toggle('active', isShift); }
     }
-    updateTypingDisplay();
-  });
-});
-document.addEventListener('keydown', e=>{
-  if(e.key==='Tab'||e.key==='Escape') return;
-  if(e.key==='Backspace'){ e.preventDefault(); typedText=typedText.slice(0,-1);}
-  else if(e.key==='Enter'){ e.preventDefault(); typedText+='\n';}
-  else if(e.key===' '){ e.preventDefault(); typedText+=' ';}
-  else if(e.key==='Shift'){ isShift=true; const sk=document.querySelector('.key[data-key="Shift"]'); if(sk) sk.classList.add('active');}
-  else if(e.key.length===1){ e.preventDefault(); typedText+=isShift?e.key.toUpperCase():e.key.toLowerCase();}
-  updateTypingDisplay();
-  let keyToFind=e.key; if(e.key===' ') keyToFind=' '; if(e.key==='Enter') keyToFind='Enter'; if(e.key==='Backspace') keyToFind='Backspace';
-  const match=Array.from(keys).find(k=>k.getAttribute('data-key')===keyToFind);
-  if(match) animateKey(match);
-});
-document.addEventListener('keyup', e=>{ if(e.key==='Shift'){ isShift=false; const sk=document.querySelector('.key[data-key="Shift"]'); if(sk) sk.classList.remove('active');}});
+    
+    function getCharacterToType(keyElement){
+      const dataKey=keyElement.getAttribute('data-key');
+      const dataShift=keyElement.getAttribute('data-shift');
+      if(isShift && dataShift) return dataShift;
+      if(dataKey.length===1 && /[A-Z]/.test(dataKey)) return isShift?dataKey:dataKey.toLowerCase();
+      return dataKey;
+    }
+    
+    function handleKeyInput(keyElement){
+      const val=keyElement.getAttribute('data-key');
+      
+      if(val==='Shift'){ 
+        updateShiftState(!isShift); 
+        return; 
+      }
+      if(val==='Backspace'){ 
+        typedText=typedText.slice(0,-1); 
+      }
+      else if(val==='Enter'){ 
+        typedText+='\n'; 
+      }
+      else if(val===' '){ 
+        typedText+=' '; 
+      }
+      else if(val==='Clear'){ 
+        typedText=''; 
+      }
+      else {
+        typedText+=getCharacterToType(keyElement);
+        if(isShift) updateShiftState(false);
+      }
+      updateTypingDisplay();
+    }
 
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-  anchor.addEventListener('click', function(e){
-    e.preventDefault();
-    const target=document.querySelector(this.getAttribute('href'));
-    if(target) target.scrollIntoView({behavior:'smooth'});
-  });
-});
-</script>
+    // Mouse click handler - Works with 3D transforms!
+    keys.forEach(key=>{
+      key.addEventListener('mousedown', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        animateKey(this);
+        handleKeyInput(this);
+      });
+      
+      key.addEventListener('click', function(e){
+        e.preventDefault();
+      });
+    });
 
+    // Physical keyboard handler
+    document.addEventListener('keydown', e=>{
+      if(e.key==='Tab'||e.key==='Escape') return;
+      e.preventDefault();
+      if(e.key==='Shift'){ updateShiftState(true); animateKey(shiftKey); return; }
+      let matchedKey=null; const pressedKey=e.key;
+      if(pressedKey===' '){ matchedKey=Array.from(keys).find(k=>k.getAttribute('data-key')===' '); }
+      else if(pressedKey==='Enter'){ matchedKey=Array.from(keys).find(k=>k.getAttribute('data-key')==='Enter'); }
+      else if(pressedKey==='Backspace'){ matchedKey=Array.from(keys).find(k=>k.getAttribute('data-key')==='Backspace'); }
+      else if(pressedKey.length===1){
+        matchedKey=Array.from(keys).find(k=>k.getAttribute('data-shift')===pressedKey);
+        if(!matchedKey){
+          matchedKey=Array.from(keys).find(k=>{
+            const dk=k.getAttribute('data-key');
+            return dk===pressedKey || dk===pressedKey.toUpperCase();
+          });
+        }
+      }
+      if(matchedKey){ animateKey(matchedKey); handleKeyInput(matchedKey); }
+    });
+    document.addEventListener('keyup', e=>{ if(e.key==='Shift'){ updateShiftState(false); } });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+      anchor.addEventListener('click', e=>{
+        e.preventDefault();
+        const target=document.querySelector(anchor.getAttribute('href'));
+        if(target) target.scrollIntoView({behavior:'smooth'});
+      });
+    });
+  </script>
 </body>
 </html>
