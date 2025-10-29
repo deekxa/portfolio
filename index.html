@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dikshya Khanal - Artistic Portfolio</title>
+<title>Dikshya Khanal - Frontend Developer Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 * {
@@ -20,28 +20,52 @@ body {
   cursor: none;
 }
 
-/* Custom Cursor */
+/* Custom Cursor with Trail */
 .cursor {
   position: fixed;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #b76e79;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #a8dadc;
   border-radius: 50%;
   pointer-events: none;
   z-index: 10000;
   transition: transform 0.15s ease;
-  mix-blend-mode: difference;
+  mix-blend-mode: screen;
 }
 
 .cursor-dot {
   position: fixed;
-  width: 6px;
-  height: 6px;
-  background: #c9b6e4;
+  width: 10px;
+  height: 10px;
+  background: #a8dadc;
   border-radius: 50%;
   pointer-events: none;
   z-index: 10001;
   transition: transform 0.1s ease;
+  box-shadow: 0 0 10px rgba(168, 218, 220, 0.8);
+}
+
+.cursor-trail {
+  position: fixed;
+  width: 15px;
+  height: 15px;
+  background: radial-gradient(circle, rgba(168, 218, 220, 0.6) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  animation: fadeTrail 0.5s ease-out forwards;
+}
+
+@keyframes fadeTrail {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
 }
 
 /* Galaxy Canvas */
@@ -430,6 +454,7 @@ nav {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   user-select: none;
+  isolation: isolate;
 }
 
 .key::before {
@@ -443,8 +468,8 @@ nav {
   border-radius: 8px;
   opacity: 0;
   transition: opacity 0.3s;
-  z-index: -1;
   pointer-events: none;
+  z-index: -1;
 }
 
 .key::after {
@@ -456,8 +481,8 @@ nav {
   height: 20px;
   background: linear-gradient(to bottom, rgba(183, 110, 121, 0.4), transparent);
   filter: blur(10px);
-  z-index: -2;
   pointer-events: none;
+  z-index: -2;
 }
 
 .key:hover {
@@ -737,14 +762,14 @@ footer {
   <div class="text-container">
     <div class="hero-content">
       <h1 class="reveal-text" id="main-title">Dikshya Khanal</h1>
-      <p class="subtitle">Frontend Developer & Animation Artist</p>
+      <p class="subtitle">Aspiring Frontend Developer</p>
       <p class="description">
-        Crafting elegant web experiences where artistry meets engineering. 
-        Specializing in React, Next.js, and creating pixel-perfect interfaces 
-        with sophisticated animations.
+        Learning React, Next.js, HTML, CSS, Tailwind CSS and JavaScript. 
+        Creating personal projects like websites, dashboards, and blogs. 
+        Passionate about building clean, responsive web applications.
       </p>
       <div class="cta-buttons">
-        <a href="#work" class="btn">View Work</a>
+        <a href="#work" class="btn">View Projects</a>
         <a href="#contact" class="btn secondary">Get in Touch</a>
       </div>
     </div>
@@ -755,15 +780,16 @@ footer {
 </section>
 
 <section class="work-section" id="work">
-  <h2 class="section-title">Selected Work</h2>
+  <h2 class="section-title">Technical Projects</h2>
   <div class="work-grid">
     <div class="work-card">
-      <h3>✦ Expertise</h3>
+      <h3>✦ Skills</h3>
       <ul>
-        <li>React & Next.js Architecture</li>
-        <li>Responsive & Adaptive Design</li>
-        <li>RESTful APIs & Headless CMS</li>
-        <li>Advanced CSS & Animation</li>
+        <li>Frontend: HTML, CSS, Tailwind CSS</li>
+        <li>JavaScript (ES6+), React.js, Next.js</li>
+        <li>Responsive & Mobile-First Design</li>
+        <li>RESTful API Integration</li>
+        <li>Git & GitHub Version Control</li>
       </ul>
     </div>
     <div class="work-card">
@@ -771,17 +797,22 @@ footer {
       <ul>
         <li>Tilottama Campus CMS</li>
         <li>Bamboo-Craft E-commerce</li>
-        <li>Achar Project Blog</li>
-        <li>Go-Healthy Portal</li>
+        <li>CMS Project (React + Vite)</li>
+        <li>React Website with Dashboard</li>
+        <li>JavaScript Practice Collection</li>
+        <li>Achar Blog Project</li>
+        <li>Go-Healthy Static Website</li>
       </ul>
     </div>
     <div class="work-card">
-      <h3>✦ Background</h3>
+      <h3>✦ Education</h3>
       <ul>
-        <li>BSc & NET IT Certified</li>
-        <li>Developer</li>
-        <li>Art-Driven Solutions</li>
-        <li>Cross-Cultural Design</li>
+        <li>BSc IT - Butwal Multiple Campus</li>
+        <li>High School - Tilottama Campus</li>
+        <li>SEE - Smriti English Boarding School</li>
+        <li>Web Development Training</li>
+        <li>Butwal Multiple Campus</li>
+        <li>Hub IT Group Pvt Ltd</li>
       </ul>
     </div>
   </div>
@@ -850,8 +881,16 @@ footer {
   
   <div class="contact-info">
     <div class="contact-card">
+      <p><strong>Phone</strong></p>
+      <p><a href="tel:+9779786694392">+977 9786694392</a></p>
+    </div>
+    <div class="contact-card">
       <p><strong>Email</strong></p>
       <p><a href="mailto:dikshyak88@gmail.com">dikshyak88@gmail.com</a></p>
+    </div>
+    <div class="contact-card">
+      <p><strong>Location</strong></p>
+      <p><a href="https://maps.google.com/?q=Nepal,Butwal" target="_blank">Nepal, Butwal</a></p>
     </div>
     <div class="contact-card">
       <p><strong>GitHub</strong></p>
@@ -866,7 +905,7 @@ footer {
 </section>
 
 <footer>
-  <p>© 2025 Dikshya Khanal. Designed & Developed with Intention.</p>
+  <p>© 2025 Dikshya Khanal. Designed & Developed with Passion.</p>
 </footer>
 
 <script>
@@ -920,21 +959,42 @@ function animate() {
 }
 animate();
 
-// Custom cursor
+// Custom cursor with trail
 const cursor = document.querySelector('.cursor');
 const cursorDot = document.querySelector('.cursor-dot');
 let mouseX = 0, mouseY = 0;
 let cursorX = 0, cursorY = 0;
+
+// Trail effect
+let lastTrailTime = 0;
 document.addEventListener('mousemove', e => {
-  mouseX = e.clientX; mouseY = e.clientY;
-  cursorDot.style.left = (mouseX-3)+'px';
-  cursorDot.style.top = (mouseY-3)+'px';
+  mouseX = e.clientX; 
+  mouseY = e.clientY;
+  cursorDot.style.left = (mouseX-5)+'px';
+  cursorDot.style.top = (mouseY-5)+'px';
+  
+  // Create trail particles
+  const now = Date.now();
+  if (now - lastTrailTime > 30) {
+    createTrail(mouseX, mouseY);
+    lastTrailTime = now;
+  }
 });
+
+function createTrail(x, y) {
+  const trail = document.createElement('div');
+  trail.className = 'cursor-trail';
+  trail.style.left = (x - 7.5) + 'px';
+  trail.style.top = (y - 7.5) + 'px';
+  document.body.appendChild(trail);
+  setTimeout(() => trail.remove(), 500);
+}
+
 function updateCursor(){
-  cursorX += (mouseX-cursorX)*0.1;
-  cursorY += (mouseY-cursorY)*0.1;
-  cursor.style.left = (cursorX-10)+'px';
-  cursor.style.top = (cursorY-10)+'px';
+  cursorX += (mouseX-cursorX)*0.15;
+  cursorY += (mouseY-cursorY)*0.15;
+  cursor.style.left = (cursorX-15)+'px';
+  cursor.style.top = (cursorY-15)+'px';
   requestAnimationFrame(updateCursor);
 }
 updateCursor();
