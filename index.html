@@ -1,135 +1,1031 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dikshya Khanal | Portfolio</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-white text-gray-900 transition-colors duration-500">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dikshya Khanal - Artistic Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  <!-- Side Navigation -->
-  <aside id="side-navbar" class="fixed top-0 left-0 h-screen w-20 bg-white dark:bg-gray-800 shadow-md flex flex-col items-center py-10 space-y-10 z-50">
-    <a href="#about" class="text-2xl hover:text-indigo-600 dark:hover:text-indigo-400 transition py-4"><i class="fas fa-user"></i></a>
-    <a href="#projects" class="text-2xl hover:text-indigo-600 dark:hover:text-indigo-400 transition py-4"><i class="fas fa-briefcase"></i></a>
-    <a href="#contact" class="text-2xl hover:text-indigo-600 dark:hover:text-indigo-400 transition py-4"><i class="fas fa-envelope"></i></a>
-    
-    <!-- Dark Mode Toggle -->
-    <div onclick="handleToggle()" class="cursor-pointer text-2xl hover:text-indigo-600 dark:hover:text-indigo-400 py-4">
-      <i class="fas fa-adjust"></i>
-    </div>
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #0f1419;
+  color: #fff;
+  overflow-x: hidden;
+  cursor: none;
+}
 
-    <!-- Download Button Below Toggle -->
-    <a href="./JAVASCRIPT SYLLABUS.pdf" class="text-2xl hover:text-indigo-600 dark:hover:text-indigo-400 transition py-4">
-      <i class="fas fa-download"></i>
-    </a>
-  </aside>
+/* Custom Cursor */
+.cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #b76e79;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transition: transform 0.15s ease;
+  mix-blend-mode: difference;
+}
 
-  <!-- Main Navigation -->
-  <nav class="fixed top-0 left-0 w-full bg-white bg-opacity-90 dark:bg-gray-900 dark:bg-opacity-90 shadow-md z-50">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="#" class="text-xl font-bold text-indigo-600 dark:text-indigo-400">Dikshya Khanal</a>
-    </div>
-  </nav>
+.cursor-dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: #c9b6e4;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10001;
+  transition: transform 0.1s ease;
+}
 
-  <!-- Hero Section -->
-  <main class="ml-24 px-10 py-24 min-h-screen flex flex-col sm:flex-row items-center justify-center sm:space-x-10 space-y-6 sm:space-y-0">
-    <div class="text-center sm:text-left">
-      <h1 class="text-4xl sm:text-5xl font-bold leading-snug">
-        Hi! I'm <span class="text-indigo-600">Dikshya Khanal</span><br/>
-        A Creative Developer & Designer
-      </h1>
-      
-      <a href="#about" class="mt-6 inline-block px-6 py-3 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">
-        Learn More
-      </a>
-    </div>
-    
-    <img src="photo/dikshyaa.jpeg" alt="Dikshya Khanal" class="w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] object-cover rounded-lg shadow-2xl border-4 border-indigo-600 transform hover:scale-105 transition-all duration-300" />
-  </main>
+/* Galaxy Canvas */
+#galaxy-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Navigation */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 2rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  background: rgba(15, 20, 25, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  color: #b76e79;
+  font-weight: 600;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #c9b6e4;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.text-container {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.hero-content {
+  flex: 1;
+  text-align: left;
+}
+
+/* Profile Picture Styles */
+.profile-picture-container {
+  position: relative;
+  width: 350px;
+  height: 420px;
+  perspective: 1000px;
+  flex-shrink: 0;
+}
+
+.profile-picture {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  border: 3px solid rgba(183, 110, 121, 0.6);
+  box-shadow: 
+    0 20px 60px rgba(183, 110, 121, 0.3),
+    0 0 30px rgba(201, 182, 228, 0.2),
+    inset 0 0 20px rgba(255, 255, 255, 0.05);
+  transition: all 0.6s ease;
+  cursor: none;
+  position: relative;
+  z-index: 2;
+  transform: perspective(800px) rotateY(-5deg) rotateX(2deg);
+}
+
+.profile-picture-container:hover .profile-picture {
+  transform: perspective(800px) rotateY(-8deg) rotateX(-5deg) translateY(-15px);
+  border-color: #b76e79;
+  box-shadow: 
+    0 30px 70px rgba(183, 110, 121, 0.4),
+    0 0 40px rgba(201, 182, 228, 0.3),
+    inset 0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+.profile-picture-container::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #b76e79, #c9b6e4, #b76e79, #c9b6e4);
+  background-size: 300% 300%;
+  opacity: 0.3;
+  z-index: 1;
+  animation: gradientMove 4s ease infinite;
+  filter: blur(15px);
+}
+
+@keyframes gradientMove {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.reveal-text {
+  font-size: 6rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.text-word {
+  display: inline-block;
+  position: relative;
+  margin: 0 0.2em;
+}
+
+.text-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 0.8s forwards;
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: none;
+}
+
+.text-char.hide {
+  opacity: 0 !important;
+  transform: scale(0);
+  transition: all 0.3s ease;
+}
+
+/* Particle explosion */
+.particle {
+  position: fixed;
+  font-size: 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  color: #b76e79;
+  pointer-events: none;
+  z-index: 9999;
+  animation: explode 1.5s ease-out forwards;
+  text-shadow: 0 0 10px rgba(183, 110, 121, 0.7);
+}
+
+@keyframes explode {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) rotate(var(--rotation)) scale(0.1);
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  color: #a8dadc;
+  letter-spacing: 3px;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeIn 1s 1s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #ccc;
+  max-width: 600px;
+  margin: 0 0 2rem;
+  opacity: 0;
+  animation: fadeIn 1s 1.5s forwards;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 2rem;
+  opacity: 0;
+  animation: fadeIn 1s 2s forwards;
+}
+
+.btn {
+  padding: 1rem 2.5rem;
+  border: 2px solid #b76e79;
+  background: transparent;
+  color: #fff;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  cursor: none;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn:hover {
+  background: #b76e79;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(183, 110, 121, 0.4);
+}
+
+.btn.secondary {
+  border-color: #c9b6e4;
+}
+
+.btn.secondary:hover {
+  background: #c9b6e4;
+  border-color: #c9b6e4;
+}
+
+/* Work Section */
+.work-section {
+  position: relative;
+  padding: 8rem 4rem;
+  z-index: 1;
+}
+
+.section-title {
+  font-size: 4rem;
+  font-family: 'Cormorant Garamond', serif;
+  text-align: center;
+  margin-bottom: 4rem;
+  color: #b76e79;
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.work-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(183, 110, 121, 0.2);
+  padding: 3rem;
+  border-radius: 20px;
+  transition: all 0.4s;
+}
+
+.work-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(183, 110, 121, 0.6);
+  box-shadow: 0 20px 60px rgba(183, 110, 121, 0.2);
+}
+
+.work-card h3 {
+  font-size: 1.8rem;
+  font-family: 'Cormorant Garamond', serif;
+  color: #c9b6e4;
+  margin-bottom: 1.5rem;
+}
+
+.work-card ul {
+  list-style: none;
+}
+
+.work-card li {
+  padding: 0.8rem 0;
+  color: #ccc;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Contact Section with Keyboard */
+.contact-section {
+  position: relative;
+  padding: 8rem 4rem;
+  z-index: 1;
+}
+
+.typing-display {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  min-height: 80px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(183, 110, 121, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  font-size: 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  color: #c9b6e4;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.typing-display::after {
+  content: '|';
+  animation: blink 1s infinite;
+  margin-left: 4px;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.keyboard-container {
+  max-width: 1000px;
+  margin: 4rem auto;
+  perspective: 1500px;
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transform: rotateX(30deg);
+  transform-style: preserve-3d;
+}
+
+.keyboard-row {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.key {
+  background: linear-gradient(145deg, #1a1f29, #0f1419);
+  border: 2px solid rgba(183, 110, 121, 0.4);
+  padding: 1.2rem 1.5rem;
+  font-size: 1rem;
+  color: #fff;
+  border-radius: 8px;
+  cursor: none;
+  transition: all 0.2s;
+  box-shadow: 
+    0 12px 24px rgba(0, 0, 0, 0.7),
+    0 6px 12px rgba(183, 110, 121, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.5);
+  transform: translateZ(20px);
+  transform-style: preserve-3d;
+  position: relative;
+  min-width: 50px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  user-select: none;
+}
+
+.key::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(145deg, rgba(183, 110, 121, 0.3), rgba(201, 182, 228, 0.3));
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.key::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 5%;
+  right: 5%;
+  height: 20px;
+  background: linear-gradient(to bottom, rgba(183, 110, 121, 0.4), transparent);
+  filter: blur(10px);
+  z-index: -2;
+  pointer-events: none;
+}
+
+.key:hover {
+  transform: translateZ(40px) translateY(-8px);
+  border-color: #b76e79;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.8),
+    0 10px 20px rgba(183, 110, 121, 0.5),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.key:hover::before {
+  opacity: 1;
+}
+
+.key:active, .key.active {
+  transform: translateZ(10px) translateY(-2px);
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.6),
+    0 4px 8px rgba(183, 110, 121, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+.key.space {
+  flex: 0 0 300px;
+}
+
+.key.special {
+  background: linear-gradient(145deg, #242936, #1a1f29);
+  border-color: rgba(201, 182, 228, 0.5);
+}
+
+.key.special:hover {
+  transform: translateZ(40px) translateY(-8px);
+  border-color: #c9b6e4;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.8),
+    0 10px 20px rgba(201, 182, 228, 0.5),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.key.wide {
+  flex: 0 0 100px;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  margin-top: 4rem;
+}
+
+.contact-card {
+  background: linear-gradient(145deg, rgba(183, 110, 121, 0.12), rgba(201, 182, 228, 0.12));
+  backdrop-filter: blur(20px);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  border-radius: 25px;
+  padding: 2.5rem 3rem;
+  min-width: 300px;
+  text-align: center;
+  transition: all 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 25px;
+  padding: 2px;
+  background: linear-gradient(135deg, #b76e79, #c9b6e4, #b76e79);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.5;
+  transition: opacity 0.5s ease;
+}
+
+.contact-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(201, 182, 228, 0.15) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.contact-card:hover::before {
+  opacity: 0.8;
+}
+
+.contact-card:hover::after {
+  opacity: 1;
+}
+
+.contact-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 
+    0 20px 40px rgba(183, 110, 121, 0.3),
+    0 0 30px rgba(201, 182, 228, 0.2),
+    inset 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.contact-card strong {
+  display: block;
+  color: #c9b6e4;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-card a {
+  color: #b76e79;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.4s ease;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-card a::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #c9b6e4, transparent);
+  transition: width 0.4s ease;
+}
+
+.contact-card:hover a {
+  color: #c9b6e4;
+  text-shadow: 0 0 15px rgba(201, 182, 228, 0.5);
+  transform: translateY(-3px);
+}
+
+.contact-card:hover a::before {
+  width: 100%;
+}
+
+.contact-card p {
+  font-size: 1.1rem;
+  color: #fff;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 3rem;
+  color: #888;
+  font-size: 0.9rem;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .text-container {
+    flex-direction: column-reverse;
+    gap: 3rem;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .description {
+    margin: 0 auto 2rem;
+  }
+
+  .cta-buttons {
+    justify-content: center;
+  }
+
+  .profile-picture-container {
+    width: 280px;
+    height: 340px;
+  }
+
+  .reveal-text {
+    font-size: 4.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-picture-container {
+    width: 220px;
+    height: 280px;
+  }
+
+  .reveal-text {
+    font-size: 3rem;
+  }
   
-  <!-- About Section -->
-  <section id="about" class="ml-24 px-10 py-20 text-center">
-    <h2 class="text-4xl font-bold text-indigo-600 mb-4">About Me</h2>
-    <p class="text-lg leading-relaxed max-w-3xl mx-auto mb-6">
-      I'm a passionate web developer with a strong eye for design and a love for creating dynamic, user-friendly websites. I specialize in building responsive and high-performance web applications using modern technologies. I enjoy crafting seamless digital experiences that bring ideas to life.
-    </p>
-    <p class="text-lg leading-relaxed max-w-3xl mx-auto mb-6">
-      With a keen focus on clean code, intuitive UX, and scalable solutions, I am always eager to learn and explore new trends in web development. Whether it's working with JavaScript frameworks, optimizing performance, or integrating APIs, I thrive on solving challenges and delivering top-notch results.
-    </p>
-    <p class="text-lg leading-relaxed max-w-3xl mx-auto mb-6">
-      I also have experience with design tools like <span class="font-bold">Canva</span>, <span class="font-bold">Figma</span>, and <span class="font-bold">Photoshop</span>. I enjoy creating visually appealing templates and assets. Additionally, I'm proficient in using <span class="font-bold">Git</span> and <span class="font-bold">GitHub</span> for version control.
-    </p>
-  </section>
+  nav {
+    padding: 1.5rem 2rem;
+  }
+  
+  .nav-links {
+    gap: 1rem;
+  }
+  
+  .keyboard-row {
+    gap: 0.3rem;
+  }
+  
+  .key {
+    padding: 0.8rem 1rem;
+    font-size: 0.8rem;
+    min-width: 35px;
+  }
+  
+  .key.space {
+    flex: 0 0 200px;
+  }
 
-  <!-- Projects Section -->
-  <section id="projects" class="ml-24 px-10 py-20 bg-white dark:bg-gray-900">
-    <h2 class="text-4xl font-bold text-indigo-600 mb-10">Projects</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-      <!-- Bamboo-Craft Project -->
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
-        <img src="photo/bamboo.png" alt="Bamboo-Craft" class="w-full h-40 object-cover rounded-md" />
-        <h3 class="text-2xl font-semibold text-indigo-600 mt-4">Bamboo-Craft </h3>
-        <p class="mt-2">Sustainable e-commerce platform that offers handcrafted bamboo products.</p>
-        <div class="mt-2 text-sm text-gray-600 dark:text-gray-400">#React #Node.js #Tailwind CSS #MongoDB #JavaScript</div>
-      </div>
+  .key.wide {
+    flex: 0 0 70px;
+  }
 
-      <!-- Portfolio Project -->
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
-        <img src="photo/portfolio.png" alt="Portfolio" class="w-full h-40 object-cover rounded-md" />
-        <h3 class="text-2xl font-semibold text-indigo-600 mt-4">This Portfolio</h3>
-        <p class="mt-2">A personal portfolio website showcasing my work and skills.</p>
-        <div class="mt-2 text-sm text-gray-600 dark:text-gray-400">#HTML #CSS #Tailwind CSS #JavaScript</div>
-      </div>
+  .typing-display {
+    font-size: 1.2rem;
+    padding: 1rem;
+    min-height: 60px;
+  }
 
-      <!-- Static Website Project -->
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
-        <img src="photo/image.png" alt="Static Website" class="w-full h-40 object-cover rounded-md" />
-        <h3 class="text-2xl font-semibold text-indigo-600 mt-4">Static Website</h3>
-        <p class="mt-2">A simple and clean static website built with HTML, CSS, JavaScript, and Tailwind CSS.</p>
-        <div class="mt-2 text-sm text-gray-600 dark:text-gray-400">#HTML #CSS #JavaScript #Tailwind CSS #React</div>
+  .contact-card {
+    min-width: 260px;
+    padding: 2rem 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+
+  .description {
+    font-size: 0.95rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<canvas id="galaxy-canvas"></canvas>
+
+<div class="cursor"></div>
+<div class="cursor-dot"></div>
+
+<nav>
+  <div class="logo">Dikshya Khanal</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="home">
+  <div class="text-container">
+    <div class="hero-content">
+      <h1 class="reveal-text" id="main-title">Dikshya Khanal</h1>
+      <p class="subtitle">Frontend Developer & Animation Artist</p>
+      <p class="description">
+        Crafting elegant web experiences where artistry meets engineering. 
+        Specializing in React, Next.js, and creating pixel-perfect interfaces 
+        with sophisticated animations.
+      </p>
+      <div class="cta-buttons">
+        <a href="#work" class="btn">View Work</a>
+        <a href="#contact" class="btn secondary">Get in Touch</a>
       </div>
     </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="ml-24 px-10 py-20 text-center">
-    <h2 class="text-4xl font-bold text-indigo-600 mb-10">Say Hello!</h2>
-    <div class="flex justify-center space-x-10 text-3xl">
-      <a href="https://github.com/deekxa" target="_blank" class="hover:text-indigo-600 dark:hover:text-indigo-400"><i class="fab fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/dikshya-khanal-%E0%B2%A0-%E0%B2%A0-608834217/" target="_blank" class="hover:text-indigo-600 dark:hover:text-indigo-400"><i class="fab fa-linkedin"></i></a>
-      <a href="https://www.facebook.com/" target="_blank" class="hover:text-indigo-600 dark:hover:text-indigo-400"><i class="fab fa-facebook"></i></a>
+    <div class="profile-picture-container">
+      <img src="profile-picture (2).jpg" alt="Dikshya Khanal" class="profile-picture">
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer class="ml-24 px-10 py-6 text-center text-sm text-gray-600 dark:text-gray-400">
-    <p>Copyright © 2023. All rights reserved. Made by <span class="text-indigo-600">Dikshya Khanal</span>.</p>
-  </footer>
+<section class="work-section" id="work">
+  <h2 class="section-title">Selected Work</h2>
+  <div class="work-grid">
+    <div class="work-card">
+      <h3>✦ Expertise</h3>
+      <ul>
+        <li>React & Next.js Architecture</li>
+        <li>Responsive & Adaptive Design</li>
+        <li>RESTful APIs & Headless CMS</li>
+        <li>Advanced CSS & Animation</li>
+      </ul>
+    </div>
+    <div class="work-card">
+      <h3>✦ Projects</h3>
+      <ul>
+        <li>Tilottama Campus CMS</li>
+        <li>Bamboo-Craft E-commerce</li>
+        <li>Achar Project Blog</li>
+        <li>Go-Healthy Portal</li>
+      </ul>
+    </div>
+    <div class="work-card">
+      <h3>✦ Background</h3>
+      <ul>
+        <li>BSc & NET IT Certified</li>
+        <li>Developer</li>
+        <li>Art-Driven Solutions</li>
+        <li>Cross-Cultural Design</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-  <!-- Scroll to top button -->
-  <div class="fixed bottom-5 right-5 z-50">
-    <a href="#" class="w-14 h-14 flex items-center justify-center bg-indigo-600 text-white rounded-full shadow-xl hover:bg-indigo-700 transition duration-300">
-      <i class="fas fa-arrow-up text-xl"></i>
-    </a>
+<section class="contact-section" id="contact">
+  <h2 class="section-title">Let's Connect</h2>
+  
+  <div class="typing-display" id="typing-display"></div>
+  
+  <div class="keyboard-container">
+    <div class="keyboard" id="keyboard">
+      <div class="keyboard-row">
+        <div class="key" data-key="1">1</div>
+        <div class="key" data-key="2">2</div>
+        <div class="key" data-key="3">3</div>
+        <div class="key" data-key="4">4</div>
+        <div class="key" data-key="5">5</div>
+        <div class="key" data-key="6">6</div>
+        <div class="key" data-key="7">7</div>
+        <div class="key" data-key="8">8</div>
+        <div class="key" data-key="9">9</div>
+        <div class="key" data-key="0">0</div>
+      </div>
+      <div class="keyboard-row">
+        <div class="key" data-key="Q">Q</div>
+        <div class="key" data-key="W">W</div>
+        <div class="key" data-key="E">E</div>
+        <div class="key" data-key="R">R</div>
+        <div class="key" data-key="T">T</div>
+        <div class="key" data-key="Y">Y</div>
+        <div class="key" data-key="U">U</div>
+        <div class="key" data-key="I">I</div>
+        <div class="key" data-key="O">O</div>
+        <div class="key" data-key="P">P</div>
+      </div>
+      <div class="keyboard-row">
+        <div class="key" data-key="A">A</div>
+        <div class="key" data-key="S">S</div>
+        <div class="key" data-key="D">D</div>
+        <div class="key" data-key="F">F</div>
+        <div class="key" data-key="G">G</div>
+        <div class="key" data-key="H">H</div>
+        <div class="key" data-key="J">J</div>
+        <div class="key" data-key="K">K</div>
+        <div class="key" data-key="L">L</div>
+      </div>
+      <div class="keyboard-row">
+        <div class="key special wide" data-key="Shift">Shift</div>
+        <div class="key" data-key="Z">Z</div>
+        <div class="key" data-key="X">X</div>
+        <div class="key" data-key="C">C</div>
+        <div class="key" data-key="V">V</div>
+        <div class="key" data-key="B">B</div>
+        <div class="key" data-key="N">N</div>
+        <div class="key" data-key="M">M</div>
+        <div class="key special wide" data-key="Backspace">⌫</div>
+      </div>
+      <div class="keyboard-row">
+        <div class="key special wide" data-key="Enter">Enter</div>
+        <div class="key space" data-key=" ">Space</div>
+        <div class="key special wide" data-key="Clear">Clear</div>
+      </div>
+    </div>
   </div>
   
+  <div class="contact-info">
+    <div class="contact-card">
+      <p><strong>Email</strong></p>
+      <p><a href="mailto:dikshyak88@gmail.com">dikshyak88@gmail.com</a></p>
+    </div>
+    <div class="contact-card">
+      <p><strong>GitHub</strong></p>
+      <p><a href="https://github.com/deekxa" target="_blank">github.com/deekxa</a></p>
+    </div>
+    <div class="contact-card">
+      <p><strong>Portfolio</strong></p>
+      <p><a href="https://dikshyakhanal.com.np" target="_blank">dikshyakhanal.com.np</a></p>
+    </div>
+  </div>
 
-  <!-- Theme Toggle Script -->
-  <script>
-    function handleToggle() {
-      const body = document.body;
-      const sideNavbar = document.getElementById("side-navbar");
-      
-      body.classList.toggle("bg-white");
-      body.classList.toggle("bg-black");
-      body.classList.toggle("text-gray-900");
-      body.classList.toggle("text-white");
-      
-      sideNavbar.classList.toggle("bg-white");
-      sideNavbar.classList.toggle("bg-gray-800");
+</section>
+
+<footer>
+  <p>© 2025 Dikshya Khanal. Designed & Developed with Intention.</p>
+</footer>
+
+<script>
+// Galaxy Canvas
+const canvas = document.getElementById('galaxy-canvas');
+const ctx = canvas.getContext('2d');
+let w = canvas.width = window.innerWidth;
+let h = canvas.height = window.innerHeight;
+
+window.addEventListener('resize', () => {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+});
+
+class Star {
+  constructor() {
+    this.x = Math.random() * w;
+    this.y = Math.random() * h;
+    this.size = Math.random() * 2;
+    this.speedX = (Math.random() - 0.5) * 0.5;
+    this.speedY = (Math.random() - 0.5) * 0.5;
+    this.opacity = Math.random();
+    this.opacitySpeed = (Math.random() - 0.5) * 0.01;
+  }
+  
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    this.opacity += this.opacitySpeed;
+    
+    if (this.opacity <= 0 || this.opacity >= 1) this.opacitySpeed *= -1;
+    if (this.x < 0 || this.x > w) this.speedX *= -1;
+    if (this.y < 0 || this.y > h) this.speedY *= -1;
+  }
+  
+  draw() {
+    ctx.fillStyle = `rgba(201, 182, 228, ${this.opacity})`;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+    ctx.fill();
+  }
+}
+
+const stars = Array.from({length:200}, () => new Star());
+
+function animate() {
+  ctx.fillStyle = 'rgba(15, 20, 25, 0.1)';
+  ctx.fillRect(0,0,w,h);
+  stars.forEach(s => { s.update(); s.draw(); });
+  requestAnimationFrame(animate);
+}
+animate();
+
+// Custom cursor
+const cursor = document.querySelector('.cursor');
+const cursorDot = document.querySelector('.cursor-dot');
+let mouseX = 0, mouseY = 0;
+let cursorX = 0, cursorY = 0;
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  cursorDot.style.left = (mouseX-3)+'px';
+  cursorDot.style.top = (mouseY-3)+'px';
+});
+function updateCursor(){
+  cursorX += (mouseX-cursorX)*0.1;
+  cursorY += (mouseY-cursorY)*0.1;
+  cursor.style.left = (cursorX-10)+'px';
+  cursor.style.top = (cursorY-10)+'px';
+  requestAnimationFrame(updateCursor);
+}
+updateCursor();
+
+// Text hover particles
+const title = document.getElementById('main-title');
+const text = title.textContent;
+title.innerHTML='';
+const words = text.split(' ');
+words.forEach((word,wi)=>{
+  const wordSpan = document.createElement('span');
+  wordSpan.className='text-word';
+  word.split('').forEach((c,ci)=>{
+    const span = document.createElement('span');
+    span.className='text-char';
+    span.textContent=c;
+    span.style.animationDelay=`${(wi*0.1)+(ci*0.05)}s`;
+    wordSpan.appendChild(span);
+  });
+  title.appendChild(wordSpan);
+  if(wi<words.length-1) title.appendChild(document.createTextNode(' '));
+});
+const chars=document.querySelectorAll('.text-char');
+chars.forEach(char=>{
+  char.addEventListener('mouseenter',()=>{
+    const r=char.getBoundingClientRect();
+    const cx=r.left+r.width/2;
+    const cy=r.top+r.height/2;
+    for(let i=0;i<8;i++){
+      const p=document.createElement('div');
+      p.className='particle'; p.textContent=char.textContent;
+      p.style.left=cx+'px'; p.style.top=cy+'px';
+      const angle=(Math.PI*2*i)/8;
+      const velocity=50+Math.random()*50;
+      const tx=Math.cos(angle)*velocity;
+      const ty=Math.sin(angle)*velocity;
+      p.style.setProperty('--tx',tx+'px');
+      p.style.setProperty('--ty',ty+'px');
+      p.style.setProperty('--rotation',(Math.random()*360-180)+'deg');
+      document.body.appendChild(p);
+      setTimeout(()=>p.remove(),1500);
     }
-  </script>
+    char.classList.add('hide');
+    setTimeout(()=>char.classList.remove('hide'),1500);
+  });
+});
+
+// Typing keyboard
+let typedText=''; let isShift=false;
+const typingDisplay=document.getElementById('typing-display');
+const keys=document.querySelectorAll('.key');
+function updateTypingDisplay(){ typingDisplay.textContent=typedText; if(typedText.length>100) typedText=typedText.slice(-100);}
+function animateKey(key){ key.classList.add('active'); setTimeout(()=>key.classList.remove('active'),150);}
+keys.forEach(key=>{
+  key.addEventListener('click',()=>{
+    const val=key.getAttribute('data-key');
+    animateKey(key);
+    switch(val){
+      case ' ': typedText+=' '; break;
+      case 'Backspace': typedText=typedText.slice(0,-1); break;
+      case 'Enter': typedText+='\n'; break;
+      case 'Shift': isShift=!isShift; key.classList.toggle('active',isShift); return;
+      case 'Clear': typedText=''; break;
+      default: typedText+=isShift?val:val.toLowerCase();
+    }
+    updateTypingDisplay();
+  });
+});
+document.addEventListener('keydown', e=>{
+  if(e.key==='Tab'||e.key==='Escape') return;
+  if(e.key==='Backspace'){ e.preventDefault(); typedText=typedText.slice(0,-1);}
+  else if(e.key==='Enter'){ e.preventDefault(); typedText+='\n';}
+  else if(e.key===' '){ e.preventDefault(); typedText+=' ';}
+  else if(e.key==='Shift'){ isShift=true; const sk=document.querySelector('.key[data-key="Shift"]'); if(sk) sk.classList.add('active');}
+  else if(e.key.length===1){ e.preventDefault(); typedText+=isShift?e.key.toUpperCase():e.key.toLowerCase();}
+  updateTypingDisplay();
+  let keyToFind=e.key; if(e.key===' ') keyToFind=' '; if(e.key==='Enter') keyToFind='Enter'; if(e.key==='Backspace') keyToFind='Backspace';
+  const match=Array.from(keys).find(k=>k.getAttribute('data-key')===keyToFind);
+  if(match) animateKey(match);
+});
+document.addEventListener('keyup', e=>{ if(e.key==='Shift'){ isShift=false; const sk=document.querySelector('.key[data-key="Shift"]'); if(sk) sk.classList.remove('active');}});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+  anchor.addEventListener('click', function(e){
+    e.preventDefault();
+    const target=document.querySelector(this.getAttribute('href'));
+    if(target) target.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+
 </body>
 </html>
