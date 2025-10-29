@@ -9,10 +9,12 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+
     html {
       -webkit-text-size-adjust: 100%;
       -webkit-tap-highlight-color: transparent;
     }
+
 
     body {
       font-family: 'Montserrat', sans-serif;
@@ -22,8 +24,10 @@
       cursor: none;
     }
 
+
     /* Custom Cursor with Trail - never intercepts pointer */
     .cursor, .cursor-dot, .cursor-trail { pointer-events: none !important; }
+
 
     .cursor {
       position: fixed; width: 30px; height: 30px;
@@ -44,8 +48,10 @@
     }
     @keyframes fadeTrail { 0%{opacity:1; transform:scale(1)} 100%{opacity:0; transform:scale(0.5)} }
 
+
     /* Galaxy Canvas */
     #galaxy-canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; }
+
 
     /* Navigation */
     nav {
@@ -59,10 +65,12 @@
     .nav-links a { color: #fff; text-decoration: none; font-size: 0.9rem; letter-spacing: 1px; transition: color 0.3s; }
     .nav-links a:hover { color: #c9b6e4; }
 
+
     /* Hero */
     .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 4rem 2rem; z-index: 1; overflow: hidden; }
     .text-container { display: flex; align-items: center; gap: 4rem; max-width: 1200px; width: 100%; }
     .hero-content { flex: 1; text-align: left; }
+
 
     /* Profile Picture */
     .profile-picture-container { position: relative; width: 350px; height: 420px; perspective: 1000px; flex-shrink: 0; }
@@ -85,11 +93,13 @@
     }
     @keyframes gradientMove { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
 
+
     .reveal-text { font-size: 6rem; font-family: 'Cormorant Garamond', serif; font-weight: 300; line-height: 1.2; margin-bottom: 1rem; position: relative; }
     .text-word { display: inline-block; position: relative; margin: 0 0.2em; }
     .text-char { display: inline-block; opacity: 0; transform: translateY(50px); animation: fadeInUp 0.8s forwards; transition: all 0.3s ease; position: relative; cursor: none; }
     .text-char.hide { opacity: 0 !important; transform: scale(0); transition: all 0.3s ease; }
     @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
 
     .particle {
       position: fixed; font-size: 1.5rem; font-family: 'Cormorant Garamond', serif; color: #b76e79; pointer-events: none; z-index: 9999;
@@ -97,15 +107,18 @@
     }
     @keyframes explode { 0%{opacity:1; transform:translate(0,0) rotate(0deg) scale(1)} 100%{opacity:0; transform:translate(var(--tx),var(--ty)) rotate(var(--rotation)) scale(0.1)} }
 
+
     .subtitle { font-size: 1.3rem; color: #a8dadc; letter-spacing: 3px; margin-bottom: 2rem; opacity: 0; animation: fadeIn 1s 1s forwards; }
     .description { font-size: 1rem; line-height: 1.8; color: #ccc; max-width: 600px; margin: 0 0 2rem; opacity: 0; animation: fadeIn 1s 1.5s forwards; }
     .cta-buttons { display: flex; gap: 2rem; opacity: 0; animation: fadeIn 1s 2s forwards; }
     @keyframes fadeIn { to { opacity: 1; } }
 
+
     .btn { padding: 1rem 2.5rem; border: 2px solid #b76e79; background: transparent; color: #fff; font-size: 1rem; letter-spacing: 1px; cursor: none; transition: all 0.3s; text-decoration: none; display: inline-block; }
     .btn:hover { background: #b76e79; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(183,110,121,0.4); }
     .btn.secondary { border-color: #c9b6e4; }
     .btn.secondary:hover { background: #c9b6e4; border-color: #c9b6e4; }
+
 
     /* Work Section */
     .work-section { position: relative; padding: 8rem 4rem; z-index: 1; }
@@ -116,17 +129,19 @@
     .work-card h3 { font-size: 1.8rem; font-family: 'Cormorant Garamond', serif; color: #c9b6e4; margin-bottom: 1.5rem; }
     .work-card li { padding: 0.8rem 0; color: #ccc; border-bottom: 1px solid rgba(255,255,255,0.1); list-style: none; }
 
+
     /* Contact Section with Keyboard */
     .contact-section { position: relative; padding: 8rem 4rem; z-index: 1; }
     .typing-display {
-      max-width: 800px; margin: 0 auto 3rem; min-height: 80px;
+      max-width: 600px; margin: 0 auto 3rem; min-height: 80px;
       background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);
       border: 2px solid rgba(183,110,121,0.3); border-radius: 12px;
-      padding: 1.5rem; font-size: 1.5rem; font-family: 'Cormorant Garamond', serif; color: #c9b6e4; text-align: center;
+      padding: 1.5rem; font-size: 1.3rem; font-family: 'Cormorant Garamond', serif; color: #c9b6e4; text-align: center;
       display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; word-wrap: break-word; white-space: pre-wrap;
     }
     .typing-display::after { content: '|'; animation: blink 1s infinite; margin-left: 4px; }
     @keyframes blink { 0%,50%{opacity:1} 51%,100%{opacity:0} }
+
 
     /* 3D Keyboard Container */
     .keyboard-container { 
@@ -151,18 +166,19 @@
       transform-style: preserve-3d;
     }
 
+
     .key {
       background: linear-gradient(145deg, #1a1f29, #0f1419);
       border: 2px solid rgba(183,110,121,0.4);
-      padding: 1.2rem 1.5rem; 
-      font-size: 1rem; 
+      padding: 0.9rem 1.2rem; 
+      font-size: 0.85rem; 
       color: #fff; 
       border-radius: 8px;
       cursor: pointer; 
       transition: all 0.2s ease;
       box-shadow: 0 12px 24px rgba(0,0,0,0.7), 0 6px 12px rgba(183,110,121,0.2), inset 0 2px 4px rgba(255,255,255,0.1), inset 0 -2px 4px rgba(0,0,0,0.5);
       position: relative; 
-      min-width: 50px; 
+      min-width: 45px; 
       text-align: center; 
       font-family: 'Montserrat', sans-serif; 
       font-weight: 500; 
@@ -173,7 +189,9 @@
       margin-bottom: 5px;
     }
 
+
     .key * { pointer-events: none !important; }
+
 
     .key::before {
       content: ''; position: absolute; inset: 0;
@@ -186,6 +204,7 @@
       filter: blur(10px); pointer-events: none; z-index: -2;
     }
 
+
     .key:hover, .key.active {
       transform: translateZ(40px) translateY(-8px); 
       border-color: #b76e79;
@@ -197,10 +216,12 @@
       box-shadow: 0 8px 16px rgba(0,0,0,0.6), 0 4px 8px rgba(183,110,121,0.4), inset 0 1px 2px rgba(255,255,255,0.1); 
     }
 
+
     /* Special sizes */
     .key.space { flex: 0 0 320px; }
     .key.special { background: linear-gradient(145deg, #242936, #1a1f29); border-color: rgba(201,182,228,0.5); }
     .key.wide { flex: 0 0 100px; }
+
 
     /* Contact cards */
     .contact-info { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; margin-top: 4rem; }
@@ -239,8 +260,10 @@
     .contact-card:hover a::before { width: 100%; }
     .contact-card p { font-size: 1.1rem; color: #fff; margin: 0; position: relative; z-index: 1; }
 
+
     /* Footer */
     footer { text-align: center; padding: 3rem; color: #888; font-size: 0.9rem; position: relative; z-index: 1; }
+
 
     /* MOBILE OPTIMIZATIONS - Disable heavy effects on mobile */
     @media (max-width: 1024px) {
@@ -253,9 +276,12 @@
       
       /* Reduce 3D transforms on tablets */
       .keyboard { transform: rotateX(15deg); }
-      .key { transform: translateZ(10px); }
+      .key { transform: translateZ(10px); padding: 0.75rem 1rem; font-size: 0.75rem; }
       .key:hover, .key.active { transform: translateZ(20px) translateY(-4px); }
+      
+      .typing-display { max-width: 90%; }
     }
+
 
     @media (max-width: 768px) {
       /* Hide custom cursor on mobile */
@@ -292,22 +318,28 @@
       /* Flatten keyboard on mobile - remove 3D */
       .keyboard-container {
         perspective: none;
+        padding: 0 1rem;
+        margin: 2rem auto;
+        overflow-x: hidden;
       }
       .keyboard { 
         transform: none !important;
         transform-style: flat;
+        width: 100%;
       }
       .keyboard-row { 
-        gap: 0.3rem;
+        gap: 0.25rem;
         transform-style: flat;
+        width: 100%;
       }
       .key { 
-        padding: 0.8rem 0.8rem; 
-        font-size: 0.75rem; 
-        min-width: 32px;
+        padding: 0.65rem 0.5rem; 
+        font-size: 0.65rem; 
+        min-width: 28px;
         transform: none !important;
         box-shadow: 0 2px 8px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,255,255,0.1);
         will-change: auto;
+        flex: 1 1 auto;
       }
       .key::after {
         display: none;
@@ -320,9 +352,9 @@
         transform: translateY(0) !important;
       }
       
-      .key.space { flex: 0 0 180px; }
-      .key.wide { flex: 0 0 65px; }
-      .typing-display { font-size: 1.2rem; padding: 1rem; min-height: 60px; }
+      .key.space { flex: 0 0 50%; min-width: 50%; }
+      .key.wide { flex: 0 0 22%; min-width: 22%; }
+      .typing-display { font-size: 1rem; padding: 1rem; min-height: 50px; max-width: 90%; }
       
       /* Simplify contact cards on mobile */
       .contact-card { 
@@ -344,7 +376,10 @@
       
       .subtitle { font-size: 1.1rem; }
       .description { font-size: 0.95rem; }
+      .contact-section { padding: 6rem 2rem; }
+      .work-section { padding: 6rem 2rem; }
     }
+
 
     /* Extra small devices - further optimizations */
     @media (max-width: 480px) {
@@ -354,16 +389,34 @@
       .nav-links { gap: 0.8rem; font-size: 0.85rem; }
       .profile-picture-container { width: 180px; height: 240px; }
       .contact-card { min-width: 100%; padding: 1.5rem 2rem; }
-      .work-section, .contact-section { padding: 4rem 1.5rem; }
+      .work-section, .contact-section { padding: 4rem 1rem; }
+      
+      .keyboard-container {
+        padding: 0 0.5rem;
+      }
+      .keyboard-row { 
+        gap: 0.2rem;
+      }
+      .key { 
+        padding: 0.55rem 0.35rem; 
+        font-size: 0.6rem; 
+        min-width: 24px;
+      }
+      .key.space { flex: 0 0 45%; min-width: 45%; }
+      .key.wide { flex: 0 0 20%; min-width: 20%; }
+      .typing-display { font-size: 0.9rem; padding: 0.75rem; max-width: 95%; }
     }
   </style>
 </head>
 <body>
 
+
   <canvas id="galaxy-canvas"></canvas>
+
 
   <div class="cursor"></div>
   <div class="cursor-dot"></div>
+
 
   <nav>
     <div class="logo">Dikshya Khanal</div>
@@ -373,6 +426,7 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
+
 
   <section class="hero" id="home">
     <div class="text-container">
@@ -394,6 +448,7 @@
       </div>
     </div>
   </section>
+
 
   <section class="work-section" id="work">
     <h2 class="section-title">Technical Projects</h2>
@@ -434,10 +489,13 @@
     </div>
   </section>
 
+
   <section class="contact-section" id="contact">
     <h2 class="section-title">Let's Connect</h2>
 
+
     <div class="typing-display" id="typing-display"></div>
+
 
     <div class="keyboard-container">
       <div class="keyboard" id="keyboard">
@@ -501,6 +559,7 @@
       </div>
     </div>
 
+
     <div class="contact-info">
       <div class="contact-card">
         <p><strong>Phone</strong></p>
@@ -524,15 +583,19 @@
       </div>
     </div>
 
+
   </section>
+
 
   <footer>
     <p>© 2025 Dikshya Khanal. Designed & Developed with Passion.</p>
   </footer>
 
+
   <script>
     // Detect if mobile device
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+
 
     // Galaxy Canvas - reduce star count on mobile
     const canvas = document.getElementById('galaxy-canvas');
@@ -540,6 +603,7 @@
     let w = canvas.width = window.innerWidth;
     let h = canvas.height = window.innerHeight;
     window.addEventListener('resize', () => { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; });
+
 
     class Star {
       constructor(){
@@ -568,6 +632,7 @@
     }
     animate();
 
+
     // Custom cursor with trail - only on desktop
     if (!isMobile) {
       const cursor = document.querySelector('.cursor');
@@ -594,6 +659,7 @@
       }
       updateCursor();
     }
+
 
     // Text hover particles - only on desktop
     const title = document.getElementById('main-title');
@@ -630,12 +696,14 @@
       });
     }
 
+
     // Keyboard logic
     let typedText=''; 
     let isShift=false;
     const typingDisplay=document.getElementById('typing-display');
     const keys=document.querySelectorAll('.key');
     const shiftKey=document.querySelector('.key[data-key="Shift"]');
+
 
     function updateTypingDisplay(){ 
       typingDisplay.textContent=typedText; 
@@ -687,6 +755,7 @@
       updateTypingDisplay();
     }
 
+
     // Mouse click handler
     keys.forEach(key=>{
       key.addEventListener('mousedown', function(e){
@@ -707,6 +776,7 @@
         handleKeyInput(this);
       });
     });
+
 
     // Physical keyboard handler
     document.addEventListener('keydown', e=>{
@@ -729,6 +799,7 @@
       if(matchedKey){ animateKey(matchedKey); handleKeyInput(matchedKey); }
     });
     document.addEventListener('keyup', e=>{ if(e.key==='Shift'){ updateShiftState(false); } });
+
 
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
